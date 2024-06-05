@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dreamer.Controller">
+<!--    <right>-->
+<!--        <TreeView fx:id="chaptersTree" visible="false" />-->
+<!--    </right>-->
+    <top>
+        <BorderPane>
+            <center>
+                <HBox>
+                    <Label text="   " visible="false">
+                        <font><Font size="15.0" /></font>
+                    </Label>
+
+                    <Label fx:id="chapterLabel" text="Sura ...">
+                        <font><Font size="15.0" /></font>
+                    </Label>
+                    <Label text="    " />
+                    <Label fx:id="verseLabel" text="Verse: ">
+                        <font><Font size="15.0" /></font>
+                    </Label>
+                    <Label text="  " />
+                    <Button fx:id="prevVerse" text="&lt; Prev">
+                        <font><Font size="12.0" /></font>
+                    </Button>
+                    <Label text="  " />
+                    <Button fx:id="nextVerse" text="Next &gt;">
+                        <font><Font size="12.0" /></font>
+                    </Button>
+                    <Label text="    " />
+                    <CheckBox fx:id="playContinuous" text="Continuous">
+                        <font><Font size="15.0" /></font>
+                    </CheckBox>
+                    <Label text="    " />
+                    <ToggleButton fx:id="playButton" text="&gt;">
+                        <font>
+                            <Font size="12.0" />
+                        </font>
+                    </ToggleButton>
+                </HBox>
+            </center>
+            <right>
+                <HBox>
+                    <Label text="Page: ">
+                        <font><Font size="15.0" /></font>
+                    </Label>
+                    <TextField fx:id="pageIdInput" text="">
+                        <font><Font size="12.0" /></font>
+                    </TextField>
+                    <Label text="  Repeat: ">
+                        <font><Font size="15.0" /></font>
+                    </Label>
+                    <TextField fx:id="repeatCountInput" text="1">
+                        <font><Font size="12.0" /></font>
+                    </TextField>
+                </HBox>
+            </right>
+        </BorderPane>
+    </top>
+    <right>
+        <BorderPane>
+            <left>
+                <ImageView fx:id="pageImage" fitWidth="600" fitHeight="780" preserveRatio="true"/>
+            </left>
+        </BorderPane>
+    </right>
+    <left>
+        <BorderPane>
+            <center>
+                <TabPane side="LEFT">
+                    <Tab fx:id="currentPage" text="Current Page" closable="false">
+                        <BorderPane>
+                            <center>
+                                <Text fx:id="pageBengaliTranslation" text="" wrappingWidth="550" lineSpacing="6" textAlignment="JUSTIFY">
+                                    <font>
+                                        <Font name="Arial" size="18.0" />
+                                    </font>
+                                </Text>
+                            </center>
+                        </BorderPane>
+                    </Tab>
+                    <Tab fx:id="currentVerse" text="Current Verse" closable="false">
+                        <BorderPane>
+                            <top>
+                                <BorderPane>
+                                    <top>
+                                        <ImageView fx:id="verseImage" fitWidth="930" preserveRatio="true" visible="true">
+                                        </ImageView>
+                                    </top>
+                                    <center>
+                                        <Text fx:id="verseBengaliTranslation" text="" wrappingWidth="930">
+                                            <font>
+                                                <Font name="Arial" size="23.0" />
+                                            </font>
+                                        </Text>
+                                    </center>
+                                </BorderPane>
+                            </top>
+                            <bottom>
+                                <TabPane fx:id="currentVerseTafsirPane">
+
+                                </TabPane>
+                            </bottom>
+                        </BorderPane>
+                    </Tab>
+
+                    <Tab fx:id="vocabularyPane" text="Vocabulary" closable="false">
+                        <BorderPane>
+                            <center>
+                                <ScrollPane hbarPolicy="NEVER">
+                                    <ImageView fx:id="vocabularyImage" fitWidth="910" fitHeight="1100" preserveRatio="true"/>
+                                </ScrollPane>
+                            </center>
+                            <left>
+                                <Button fx:id="vocabularyPrevButton" text="&lt;"/>
+                            </left>
+                            <right>
+                                <Button fx:id="vocabularyNextButton" text="&gt;"/>
+                            </right>
+                        </BorderPane>
+                    </Tab>
+                    <Tab fx:id="tafsirJalalainPane" text="Tafsir" closable="false">
+                        <BorderPane>
+                            <center>
+                                <ScrollPane hbarPolicy="NEVER">
+                                    <ImageView fx:id="tafsirJalalainImage" fitWidth="920" fitHeight="1100" preserveRatio="true"/>
+                                </ScrollPane>
+                            </center>
+                            <left>
+                                <Button fx:id="tafsirJalalainPrevButton" text="&lt;"/>
+                            </left>
+                            <right>
+                                <Button fx:id="tafsirJalalainNextButton" text="&gt;"/>
+                            </right>
+                        </BorderPane>
+                    </Tab>
+                </TabPane>
+            </center>
+        </BorderPane>
+    </left>
+</BorderPane>

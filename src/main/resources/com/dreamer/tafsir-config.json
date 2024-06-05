@@ -1,0 +1,12 @@
+{
+  "Tafsirs": [
+    {
+      "Id": "Jalalain",
+      "SourceFile": "ar-jalalayn-tanzil.md"
+    },
+    {
+      "Id": "Ibn Kathir",
+      "SourceFile": "ar-ibn-kathir-qurancom.md"
+    }
+  ]
+}
