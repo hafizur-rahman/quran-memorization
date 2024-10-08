@@ -1437,7 +1437,7 @@
 		<page index="477" sura="41" aya="1" />
 		<page index="478" sura="41" aya="12" />
 		<page index="479" sura="41" aya="21" />
-		<page index="480" sura="41" aya="30" />
+		<page index="480" sura="41" aya="29" />
 		<page index="481" sura="41" aya="39" />
 		<page index="482" sura="41" aya="47" />
 		<page index="483" sura="42" aya="1" />
@@ -1447,30 +1447,31 @@
 		<page index="487" sura="42" aya="32" />
 		<page index="488" sura="42" aya="45" />
 		<page index="489" sura="42" aya="52" />
-		<page index="490" sura="43" aya="11" />
-		<page index="491" sura="43" aya="23" />
-		<page index="492" sura="43" aya="34" />
-		<page index="493" sura="43" aya="48" />
-		<page index="494" sura="43" aya="61" />
-		<page index="495" sura="43" aya="74" />
-		<page index="496" sura="44" aya="1" />
-		<page index="497" sura="44" aya="19" />
-		<page index="498" sura="44" aya="40" />
-		<page index="499" sura="45" aya="1" />
-		<page index="500" sura="45" aya="14" />
-		<page index="501" sura="45" aya="23" />
-		<page index="502" sura="45" aya="33" />
-		<page index="503" sura="46" aya="6" />
-		<page index="504" sura="46" aya="15" />
-		<page index="505" sura="46" aya="21" />
-		<page index="506" sura="46" aya="29" />
-		<page index="507" sura="47" aya="1" />
+		<page index="490" sura="43" aya="12" />
+		<page index="491" sura="43" aya="24" />
+		<page index="492" sura="43" aya="36" />
+		<page index="493" sura="43" aya="50" />
+		<page index="494" sura="43" aya="64" />
+		<page index="495" sura="43" aya="80" />
+		<page index="496" sura="44" aya="5" />
+		<page index="497" sura="44" aya="27" />
+		<page index="498" sura="44" aya="49" />
+		<page index="499" sura="45" aya="7" />
+		<page index="500" sura="45" aya="18" />
+		<page index="501" sura="45" aya="27" />
+		<!-- Juz 26 -->
+		<page index="502" sura="46" aya="1" />
+		<page index="503" sura="46" aya="9" />
+		<page index="504" sura="46" aya="16" />
+		<page index="505" sura="46" aya="23" />
+		<page index="506" sura="46" aya="30" />
+		<page index="507" sura="47" aya="2" />
 		<page index="508" sura="47" aya="12" />
-		<page index="509" sura="47" aya="20" />
+		<page index="509" sura="47" aya="19" />
 		<page index="510" sura="47" aya="30" />
 		<page index="511" sura="48" aya="1" />
 		<page index="512" sura="48" aya="10" />
-		<page index="513" sura="48" aya="16" />
+		<page index="513" sura="48" aya="15" />
 		<page index="514" sura="48" aya="24" />
 		<page index="515" sura="48" aya="29" />
 		<page index="516" sura="49" aya="5" />
@@ -1479,6 +1480,7 @@
 		<page index="519" sura="50" aya="16" />
 		<page index="520" sura="50" aya="35" />
 		<page index="521" sura="51" aya="7" />
+		<!-- Juz 27 -->
 		<page index="522" sura="51" aya="31" />
 		<page index="523" sura="51" aya="52" />
 		<page index="524" sura="52" aya="15" />
@@ -1519,49 +1521,57 @@
 		<page index="559" sura="65" aya="6" />
 		<page index="560" sura="66" aya="1" />
 		<page index="561" sura="66" aya="8" />
+		<!-- Juz 29 -->
 		<page index="562" sura="67" aya="1" />
-		<page index="563" sura="67" aya="13" />
-		<page index="564" sura="67" aya="27" />
-		<page index="565" sura="68" aya="16" />
-		<page index="566" sura="68" aya="43" />
-		<page index="567" sura="69" aya="9" />
-		<page index="568" sura="69" aya="35" />
-		<page index="569" sura="70" aya="11" />
-		<page index="570" sura="70" aya="40" />
-		<page index="571" sura="71" aya="11" />
-		<page index="572" sura="72" aya="1" />
-		<page index="573" sura="72" aya="14" />
-		<page index="574" sura="73" aya="1" />
-		<page index="575" sura="73" aya="20" />
-		<page index="576" sura="74" aya="18" />
-		<page index="577" sura="74" aya="48" />
-		<page index="578" sura="75" aya="20" />
-		<page index="579" sura="76" aya="6" />
-		<page index="580" sura="76" aya="26" />
-		<page index="581" sura="77" aya="20" />
-		<page index="582" sura="78" aya="1" />
-		<page index="583" sura="78" aya="31" />
-		<page index="584" sura="79" aya="16" />
-		<page index="585" sura="80" aya="1" />
-		<page index="586" sura="81" aya="1" />
-		<page index="587" sura="82" aya="1" />
-		<page index="588" sura="83" aya="7" />
-		<page index="589" sura="83" aya="35" />
-		<page index="590" sura="85" aya="1" />
-		<page index="591" sura="86" aya="1" />
-		<page index="592" sura="87" aya="16" />
-		<page index="593" sura="89" aya="1" />
-		<page index="594" sura="89" aya="24" />
-		<page index="595" sura="91" aya="1" />
-		<page index="596" sura="92" aya="15" />
-		<page index="597" sura="95" aya="1" />
-		<page index="598" sura="97" aya="1" />
-		<page index="599" sura="98" aya="8" />
-		<page index="600" sura="100" aya="10" />
-		<page index="601" sura="103" aya="1" />
-		<page index="602" sura="106" aya="1" />
-		<page index="603" sura="109" aya="1" />
-		<page index="604" sura="112" aya="1" />
+		<page index="563" sura="67" aya="11" />
+		<page index="564" sura="67" aya="23" />
+		<page index="565" sura="68" aya="7" />
+		<page index="566" sura="68" aya="32" />
+		<page index="567" sura="68" aya="49" />
+		<page index="568" sura="69" aya="13" />
+		<page index="569" sura="69" aya="35" />
+		<page index="570" sura="70" aya="5" />
+		<page index="571" sura="70" aya="32" />
+		<page index="572" sura="71" aya="3" />
+		<page index="573" sura="71" aya="19" />
+		<page index="574" sura="72" aya="2" />
+		<page index="575" sura="72" aya="15" />
+		<page index="576" sura="72" aya="28" />
+		<page index="577" sura="73" aya="16" />
+		<page index="578" sura="74" aya="1" />
+		<page index="579" sura="74" aya="31" />
+		<page index="580" sura="74" aya="50" />
+		<page index="581" sura="75" aya="15" />
+		<page index="582" sura="76" aya="1" />
+		<page index="583" sura="76" aya="15" />
+		<page index="584" sura="76" aya="31" />
+		<page index="585" sura="77" aya="26" />
+		<!-- Juz 30-->
+		<page index="586" sura="78" aya="1" />
+		<page index="587" sura="78" aya="28" />
+		<page index="588" sura="79" aya="9" />
+		<page index="589" sura="79" aya="39" />
+		<page index="590" sura="80" aya="21" />
+		<page index="591" sura="81" aya="9" />
+		<page index="592" sura="82" aya="6" />
+		<page index="593" sura="83" aya="11" />
+		<page index="594" sura="83" aya="34" />
+		<page index="595" sura="84" aya="22" />
+		<page index="596" sura="85" aya="14" />
+		<page index="597" sura="87" aya="1" />
+		<page index="598" sura="88" aya="8" />
+		<page index="599" sura="89" aya="10" />
+		<page index="600" sura="90" aya="1" />
+		<page index="601" sura="91" aya="6" />
+		<page index="602" sura="92" aya="19" />
+		<page index="603" sura="95" aya="1" />
+		<page index="604" sura="96" aya="18" />
+		<page index="605" sura="98" aya="8" />
+		<page index="606" sura="100" aya="9" />
+		<page index="607" sura="103" aya="1" />
+		<page index="608" sura="106" aya="1" />
+		<page index="609" sura="109" aya="3" />
+		<page index="610" sura="113" aya="1" />
 	</pages>
 	<sajdas>
 		<sajda index="1" sura="7" aya="206" type="recommended" />
