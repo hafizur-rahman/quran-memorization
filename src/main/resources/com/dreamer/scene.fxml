@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.scene.web.HTMLEditor?>
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dreamer.Controller">
 <!--    <right>-->
 <!--        <TreeView fx:id="chaptersTree" visible="false" />-->
@@ -42,6 +43,10 @@
                             <Font size="12.0" />
                         </font>
                     </ToggleButton>
+                    <Label text="  " />
+                    <Button fx:id="randomVerse" text="Pick Random">
+                        <font><Font size="12.0" /></font>
+                    </Button>
                 </HBox>
             </center>
             <right>
@@ -102,9 +107,10 @@
                                 </BorderPane>
                             </top>
                             <bottom>
-                                <TabPane fx:id="currentVerseTafsirPane">
+<!--                                <TabPane fx:id="currentVerseTafsirPane">-->
 
-                                </TabPane>
+<!--                                </TabPane>-->
+<!--                                <HTMLEditor fx:id="similarVerses" maxHeight="400"></HTMLEditor>-->
                             </bottom>
                         </BorderPane>
                     </Tab>
@@ -124,21 +130,21 @@
                             </right>
                         </BorderPane>
                     </Tab>
-                    <Tab fx:id="tafsirJalalainPane" text="Tafsir" closable="false">
-                        <BorderPane>
-                            <center>
-                                <ScrollPane hbarPolicy="NEVER">
-                                    <ImageView fx:id="tafsirJalalainImage" fitWidth="920" fitHeight="1100" preserveRatio="true"/>
-                                </ScrollPane>
-                            </center>
-                            <left>
-                                <Button fx:id="tafsirJalalainPrevButton" text="&lt;"/>
-                            </left>
-                            <right>
-                                <Button fx:id="tafsirJalalainNextButton" text="&gt;"/>
-                            </right>
-                        </BorderPane>
-                    </Tab>
+<!--                    <Tab fx:id="tafsirJalalainPane" text="Tafsir" closable="false">-->
+<!--                        <BorderPane>-->
+<!--                            <center>-->
+<!--                                <ScrollPane hbarPolicy="NEVER">-->
+<!--                                    <ImageView fx:id="tafsirJalalainImage" fitWidth="920" fitHeight="1100" preserveRatio="true"/>-->
+<!--                                </ScrollPane>-->
+<!--                            </center>-->
+<!--                            <left>-->
+<!--                                <Button fx:id="tafsirJalalainPrevButton" text="&lt;"/>-->
+<!--                            </left>-->
+<!--                            <right>-->
+<!--                                <Button fx:id="tafsirJalalainNextButton" text="&gt;"/>-->
+<!--                            </right>-->
+<!--                        </BorderPane>-->
+<!--                    </Tab>-->
                 </TabPane>
             </center>
         </BorderPane>

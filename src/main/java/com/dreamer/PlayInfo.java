@@ -4,8 +4,11 @@ import com.dreamer.corpus.Range;
 import com.dreamer.corpus.Verse;
 
 import java.util.List;
+import java.util.Random;
 
 public class PlayInfo {
+    private Random rand = new Random(System.currentTimeMillis());
+
     private Range playRange;
 
     private List<Verse> verses;
@@ -177,5 +180,23 @@ public class PlayInfo {
 
     public void incrementCurrentVerseRepeatCount() {
         currentVerseRepeated ++;
+    }
+
+    public void moveToRandomVerse() {
+        while (true) {
+            int randomIndex = rand.nextInt(verses.size());
+
+            if (randomIndex != currentVerseIndex) {
+                currentVerseIndex = randomIndex;
+                currentVerseRepeated = 0;
+
+                break;
+            }
+        }
+
+
+        if (isRangeEnded()) {
+            reset();
+        }
     }
 }

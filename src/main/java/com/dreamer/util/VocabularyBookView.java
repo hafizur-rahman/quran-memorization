@@ -47,7 +47,14 @@ public class VocabularyBookView {
             entry(422, 276),
             entry(423, 279),
             entry(424, 282),
-            entry(425, 286)
+            entry(425, 286),
+
+            entry(477, 443),
+            entry(478, 445),
+            entry(479, 447),
+            entry(480, 449),
+            entry(481, 451)
+
     );
 
     private final int VOL2_PAGE_NO_OFFSET = 7;

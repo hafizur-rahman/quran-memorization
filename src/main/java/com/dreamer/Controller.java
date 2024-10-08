@@ -11,7 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
+import javafx.scene.web.HTMLEditor;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.*;
@@ -76,11 +79,14 @@ public class Controller implements Initializable {
     @FXML
     private Button vocabularyNextButton;
 
-    @FXML
-    private Button tafsirJalalainPrevButton;
+//    @FXML
+//    private Button tafsirJalalainPrevButton;
+//
+//    @FXML
+//    private Button tafsirJalalainNextButton;
 
     @FXML
-    private Button tafsirJalalainNextButton;
+    private HTMLEditor similarVerses;
 
     @FXML
     private CheckBox playContinuous;
@@ -96,18 +102,22 @@ public class Controller implements Initializable {
     int chapterId = 1;
     int verseId = 1;
 
-    @FXML
-    TabPane currentVerseTafsirPane;
+//    @FXML
+//    TabPane currentVerseTafsirPane;
 
-    TafsirPane tafsirPane;
+    //TafsirPane tafsirPane;
+
+    @FXML
+    Button randomVerse;
 
     Pattern pattern = Pattern.compile("(\\d+)-?(\\d+)?");
-    int currentPageId = 402;
+    int currentPageId = 503;
 
     private PdfModel quranModel;
     private PdfModel vocabularyBook1Model;
     private PdfModel vocabularyBook2Model;
 
+    private SimilarVersesReader similarVersesReader = new SimilarVersesReader();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -126,7 +136,7 @@ public class Controller implements Initializable {
         bookRef.ifPresent(quranObject -> {
             loader.populateTranslationText(quranObject, getClass().getResource("bn.bengali.txt").getFile());
 
-            tafsirPane = TafsirPane.build(currentVerseTafsirPane, loader.getMdFileLoader(), quranObject);
+            //tafsirPane = TafsirPane.build(currentVerseTafsirPane, loader.getMdFileLoader(), quranObject);
         });
 
         updatePageRange();
@@ -135,12 +145,10 @@ public class Controller implements Initializable {
         playInfo = new PlayInfo(playRange.get(), verses);
         playInfo.updateRepeatCount(Integer.parseInt(repeatCountInput.getText()));
 
-        updatePageTranslationTab(verses);
-
         pageIdInput.setText(Integer.toString(currentPageId));
 
         vocabularyView.setCurrentPageIndex(currentPageId);
-        tafsirView.setCurrentPageIndex(currentPageId);
+        //tafsirView.setCurrentPageIndex(currentPageId);
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(
@@ -169,11 +177,14 @@ public class Controller implements Initializable {
             List<Verse> selectedVerses = preparePlayList(playRange.get());
             playInfo.setVerses(selectedVerses);
 
-            updatePageTranslationTab(selectedVerses);
+            Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
+            List<Verse> versesInPage = preparePlayList(currentPageRange);
+            updatePageTranslationTab(versesInPage);
+
             updateMediaPlayer(bookRef.get());
 
             vocabularyView.setCurrentPageIndex(currentPageId);
-            tafsirView.setCurrentPageIndex(currentPageId);
+//            tafsirView.setCurrentPageIndex(currentPageId);
         });
 
         repeatCountInput.setOnAction(e -> {
@@ -220,6 +231,12 @@ public class Controller implements Initializable {
             updateMediaPlayer(bookRef.get());
         });
 
+        randomVerse.setOnAction(e -> {
+            playInfo.moveToRandomVerse();
+
+            updateMediaPlayer(bookRef.get());
+        });
+
         vocabularyPrevButton.setOnAction(e -> {
             vocabularyView.showPrevPage();
         });
@@ -227,12 +244,31 @@ public class Controller implements Initializable {
             vocabularyView.showNextPage();
         });
 
-        tafsirJalalainPrevButton.setOnAction(e -> {
-            tafsirView.showPrevPage();
-        });
-        tafsirJalalainNextButton.setOnAction(e -> {
-            tafsirView.showNextPage();
-        });
+//        tafsirJalalainPrevButton.setOnAction(e -> {
+//            tafsirView.showPrevPage();
+//        });
+//        tafsirJalalainNextButton.setOnAction(e -> {
+//            tafsirView.showNextPage();
+//        });
+
+        Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
+        List<Verse> versesInPage = preparePlayList(currentPageRange);
+        updatePageTranslationTab(versesInPage);
+
+//        try {
+//            Map data = similarVersesReader.loadSimilarVerses(26);
+//
+//            Object items = ((List)data.get("items")).get(2);
+//
+//            String text = (String)((List)((LinkedHashMap)((List)((LinkedHashMap) items).get("similarities")).get(0)).get("verses")).get(0);
+//
+//            System.out.println(text);
+//            similarVerses.setHtmlText(
+//                text.replace("<c1>", "<c1 style=\"color:blue\">")
+//            );
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void updatePageTranslationTab(List<Verse> verses) {
@@ -292,34 +328,47 @@ public class Controller implements Initializable {
 
         String soundFileName = null;
 
+        chapterId = playInfo.getCurrentVerse().getChapterId();
+        verseId = playInfo.getCurrentVerse().getVerseId();
+
+        Optional<Page> currentPage = quranObject.locatePageByVerse(playInfo.getCurrentVerse());
+        if (currentPageId != currentPage.get().getIndex()) {
+            currentPageId = currentPage.get().getIndex();
+
+            Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
+            List<Verse> versesInPage = preparePlayList(currentPageRange);
+            updatePageTranslationTab(versesInPage);
+        }
+
+//        System.out.println("Chapter: " + playInfo.getCurrentVerse().getChapterId()
+//                + ", Verse: " + playInfo.getCurrentVerse().getVerseId()
+//                + ", page: " + currentPageId);
+
+        Optional<Verse> translatedVerseRef = quranObject.getTranslatedChapter(playInfo.getCurrentVerse().getChapterId())
+                .flatMap(chapter -> chapter.getVerse(verseId));
+
+        String imageFileName = "verse_images/" + chapterId + "_" + verseId + ".png";
+        verseImage.setImage(new Image(getClass().getResourceAsStream(imageFileName)));
+
+        quranObject.getChapter(chapterId).ifPresent(chapter1 -> {
+            chapterLabel.setText("Sura " + chapter1.getName());
+        });
+
+        translatedVerseRef.ifPresent(verse -> {
+            verseLabel.setText("Verse: " + verseId);
+            verseBengaliTranslation.setText(verse.getText());
+        });
+
+        //tafsirPane.updateView(playInfo.getCurrentVerse().getChapterId()-1, verseId);
+
+        quranView.setCurrentPageIndex(currentPageId);
+
         if (playInfo.isPlayAudhubillah()) {
             soundFileName = String.format("verse_recitation/audhubillah.mp3", chapterId, verseId);
         } else if (playInfo.isPlayBismillah()) {
             soundFileName = String.format("verse_recitation/bismillah.mp3", chapterId, verseId);
         } else {
-            chapterId = playInfo.getCurrentVerse().getChapterId();
-            verseId = playInfo.getCurrentVerse().getVerseId();
-
-            Optional<Verse> translatedVerseRef = quranObject.getTranslatedChapter(playInfo.getCurrentVerse().getChapterId())
-                    .flatMap(chapter -> chapter.getVerse(verseId));
-
-            String imageFileName = "verse_images/" + chapterId + "_" + verseId + ".png";
-            verseImage.setImage(new Image(getClass().getResourceAsStream(imageFileName)));
-
             soundFileName = String.format("verse_recitation/%03d%03d.mp3", chapterId, verseId);
-
-            quranObject.getChapter(chapterId).ifPresent(chapter1 -> {
-                chapterLabel.setText("Sura " + chapter1.getName());
-            });
-
-            translatedVerseRef.ifPresent(verse -> {
-                verseLabel.setText("Verse: " + verseId);
-                verseBengaliTranslation.setText(verse.getText());
-            });
-
-            tafsirPane.updateView(playInfo.getCurrentVerse().getChapterId()-1, verseId);
-
-            quranView.setCurrentPageIndex(currentPageId);
         }
 
         if (playContinuous.isSelected() || playInfo.isPlayBismillah() || playInfo.isPlayAudhubillah()
@@ -353,27 +402,32 @@ public class Controller implements Initializable {
                 currentPageId = startPageId;
             }
 
-            Page page = quranObject.getPage(startPageId).get();
-            Optional<Page> page2Ref = quranObject.getPage(startPageId+pageCount);
-
-            Optional<Verse> startVerse = quranObject.getChapter(page.getChapterId()).flatMap(
-                    chapter -> chapter.getVerse(page.getStartVerse()));
-
-            Optional<Verse> endVerse = null;
-            if (page2Ref.isPresent()) {
-                if (page2Ref.get().getStartVerse() == 1) {
-                    endVerse = quranObject.getChapter(page2Ref.get().getChapterId()-1).map(chapter ->
-                            chapter.getVerses().getLast());
-                } else {
-                    endVerse = quranObject.getChapter(page2Ref.get().getChapterId()).map(chapter ->
-                            chapter.getVerse(page2Ref.get().getStartVerse()-1).get());
-                }
-            } else {
-                endVerse = Optional.of(quranObject.getChapters().getLast().getVerses().getLast());
-            }
-
-            return new Range(startVerse.get(), endVerse.get());
+            return buildVerseRange(quranObject, startPageId, pageCount);
         });
+    }
+
+    private static Range buildVerseRange(QuranObject quranObject, int startPageId, int pageCount) {
+        Page page = quranObject.getPage(startPageId).get();
+        Optional<Page> page2Ref = quranObject.getPage(
+                Math.min(startPageId+pageCount, quranObject.getPages().size()));
+
+        Optional<Verse> startVerse = quranObject.getChapter(page.getChapterId()).flatMap(
+                chapter -> chapter.getVerse(page.getStartVerse()));
+
+        Optional<Verse> endVerse = null;
+        if (page2Ref.isPresent()) {
+            if (page2Ref.get().getStartVerse() == 1) {
+                endVerse = quranObject.getChapter(page2Ref.get().getChapterId()-1).map(chapter ->
+                        chapter.getVerses().getLast());
+            } else {
+                endVerse = quranObject.getChapter(page2Ref.get().getChapterId()).map(chapter ->
+                        chapter.getVerse(page2Ref.get().getStartVerse()-1).get());
+            }
+        } else {
+            endVerse = Optional.of(quranObject.getChapters().getLast().getVerses().getLast());
+        }
+
+        return new Range(startVerse.get(), endVerse.get());
     }
 
     private MediaPlayer prepareMediaPlayer(String url) {
