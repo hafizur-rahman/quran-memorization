@@ -1,0 +1,30 @@
+plugins {
+    id("application")
+    id("org.openjfx.javafxplugin") version("0.0.9")
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
+    implementation 'org.apache.pdfbox:pdfbox:2.0.27'
+    implementation 'org.apache.pdfbox:jbig2-imageio:3.0.4'
+    implementation 'org.apache.pdfbox:pdfbox-tools:2.0.27'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+javafx {
+    version = "19"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.media', 'javafx.web' ]
+}
