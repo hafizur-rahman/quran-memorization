@@ -13,9 +13,6 @@ repositories {
 
 dependencies {
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
-    implementation 'org.apache.pdfbox:pdfbox:2.0.27'
-    implementation 'org.apache.pdfbox:jbig2-imageio:3.0.4'
-    implementation 'org.apache.pdfbox:pdfbox-tools:2.0.27'
 }
 
 java {
@@ -25,6 +22,6 @@ java {
 }
 
 javafx {
-    version = "19"
+    version = "21"
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.media', 'javafx.web' ]
 }

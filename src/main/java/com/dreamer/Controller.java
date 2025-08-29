@@ -106,8 +106,6 @@ public class Controller implements Initializable {
     int currentPageId = 103;
 
     private PageModelImpl quranModel;
-    private PdfModel vocabularyBook1Model;
-    private PdfModel vocabularyBook2Model;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

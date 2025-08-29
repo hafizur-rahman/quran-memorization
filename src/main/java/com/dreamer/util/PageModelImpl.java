@@ -24,7 +24,9 @@ public class PageModelImpl implements PageModel {
         try {
             pageImage = new Image(new FileInputStream(file.toFile()));
         } catch (Exception ex) {
-            throw new RuntimeException("Page image not found: " + file);
+            String juzId = String.format("%02d", (pageNumber / 20) + 1);
+
+            throw new RuntimeException("Page image not found: " + file + ". You can download image from https://www.quranclassonline.com/Maktab/Para-" + juzId + ".html");
         }
         return pageImage;
     }
