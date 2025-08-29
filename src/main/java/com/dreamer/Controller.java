@@ -13,6 +13,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.*;
@@ -109,13 +111,19 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        quranModel = new PageModelImpl(Path.of(getClass().getResource("page_images").getFile().substring(1)));
+        String resourcePath = System.getProperty("quranmemo.resource.path");
+
+        quranModel = new PageModelImpl(Path.of(resourcePath + "page_images"));
         quranView = new BookView(quranModel, pageImage);
 
-        bookRef = loader.loadMetaData(getClass().getResourceAsStream("quran-data.xml"));
+        try {
+            bookRef = loader.loadMetaData(new FileInputStream(resourcePath + "quran-data.xml"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         bookRef.ifPresent(quranObject -> {
-            loader.populateTranslationText(quranObject, getClass().getResource("bn.bengali.txt").getFile());
+            loader.populateTranslationText(quranObject, resourcePath + "bn.bengali.txt");
 
             //tafsirPane = TafsirPane.build(currentVerseTafsirPane, loader.getMdFileLoader(), quranObject);
         });
