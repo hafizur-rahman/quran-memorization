@@ -1,0 +1,1 @@
+bin\quran-memorization.bat --module-path %JAVAFX_HOME%\lib;%JAVAFX_HOME%\bin --add-modules javafx.graphics,javafx.media,javafx.controls,javafx.fxml -Dquranmemo.resource.path=C:\Users\bibag\work\quran-memorization\resources com.dreamer.MainApp

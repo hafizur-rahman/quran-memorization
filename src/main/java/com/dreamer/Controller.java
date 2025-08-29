@@ -109,21 +109,23 @@ public class Controller implements Initializable {
 
     private PageModelImpl quranModel;
 
+    private String resourcePath;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String resourcePath = System.getProperty("quranmemo.resource.path");
+        resourcePath = System.getProperty("quranmemo.resource.path");
 
-        quranModel = new PageModelImpl(Path.of(resourcePath + "page_images"));
+        quranModel = new PageModelImpl(resourcePath + "\\page_images");
         quranView = new BookView(quranModel, pageImage);
 
         try {
-            bookRef = loader.loadMetaData(new FileInputStream(resourcePath + "quran-data.xml"));
+            bookRef = loader.loadMetaData(new FileInputStream(resourcePath + "\\quran-data.xml"));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
 
         bookRef.ifPresent(quranObject -> {
-            loader.populateTranslationText(quranObject, resourcePath + "bn.bengali.txt");
+            loader.populateTranslationText(quranObject, resourcePath + "\\bn.bengali.txt");
 
             //tafsirPane = TafsirPane.build(currentVerseTafsirPane, loader.getMdFileLoader(), quranObject);
         });
@@ -294,15 +296,15 @@ public class Controller implements Initializable {
             updatePageTranslationTab(versesInPage);
         }
 
-//        System.out.println("Chapter: " + playInfo.getCurrentVerse().getChapterId()
-//                + ", Verse: " + playInfo.getCurrentVerse().getVerseId()
-//                + ", page: " + currentPageId);
-
         Optional<Verse> translatedVerseRef = quranObject.getTranslatedChapter(playInfo.getCurrentVerse().getChapterId())
                 .flatMap(chapter -> chapter.getVerse(verseId));
 
         String imageFileName = "verse_images/" + chapterId + "_" + verseId + ".png";
-        verseImage.setImage(new Image(getClass().getResourceAsStream(imageFileName)));
+        try {
+            verseImage.setImage(new Image(new FileInputStream(resourcePath + "\\" + imageFileName)));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         quranObject.getChapter(chapterId).ifPresent(chapter1 -> {
             chapterLabel.setText("Sura " + chapter1.getName());
@@ -318,11 +320,11 @@ public class Controller implements Initializable {
         quranView.setCurrentPageIndex(currentPageId+1);
 
         if (playInfo.isPlayAudhubillah()) {
-            soundFileName = String.format("verse_recitation/audhubillah.mp3", chapterId, verseId);
+            soundFileName = String.format("verse_recitation\\audhubillah.mp3", chapterId, verseId);
         } else if (playInfo.isPlayBismillah()) {
-            soundFileName = String.format("verse_recitation/bismillah.mp3", chapterId, verseId);
+            soundFileName = String.format("verse_recitation\\bismillah.mp3", chapterId, verseId);
         } else {
-            soundFileName = String.format("verse_recitation/%03d%03d.mp3", chapterId, verseId);
+            soundFileName = String.format("verse_recitation\\%03d%03d.mp3", chapterId, verseId);
         }
 
         if (playContinuous.isSelected() || playInfo.isPlayBismillah() || playInfo.isPlayAudhubillah()
@@ -331,7 +333,7 @@ public class Controller implements Initializable {
                 mediaPlayer.dispose();
             }
 
-            mediaPlayer = prepareMediaPlayer(getClass().getResource(soundFileName).toExternalForm());
+            mediaPlayer = prepareMediaPlayer(Path.of(resourcePath, soundFileName).toUri().toString());
             atEndOfMedia = false;
         }
     }

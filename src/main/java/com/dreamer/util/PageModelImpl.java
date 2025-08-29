@@ -2,13 +2,14 @@ package com.dreamer.util;
 
 import javafx.scene.image.Image;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.Path;
 
 public class PageModelImpl implements PageModel {
-    private Path imageDirPath;
+    private String imageDirPath;
 
-    public PageModelImpl(Path imageDirPath) {
+    public PageModelImpl(String imageDirPath) {
         this.imageDirPath = imageDirPath;
     }
 
@@ -19,10 +20,10 @@ public class PageModelImpl implements PageModel {
     public Image getImage(int pageNumber) {
         Image pageImage;
 
-        Path file = Path.of(imageDirPath.toString(), String.format("/p%03d.gif", pageNumber));
+        File file = new File(imageDirPath, String.format("/p%03d.gif", pageNumber));
 
         try {
-            pageImage = new Image(new FileInputStream(file.toFile()));
+            pageImage = new Image(new FileInputStream(file));
         } catch (Exception ex) {
             String juzId = String.format("%02d", (pageNumber / 20) + 1);
 
