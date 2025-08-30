@@ -51,7 +51,14 @@
             </center>
             <right>
                 <HBox>
-                    <Label text="Page: ">
+                    <Button fx:id="prevPage" text="&lt; Prev">
+                        <font><Font size="12.0" /></font>
+                    </Button>
+                    <Label text="  " />
+                    <Button fx:id="nextPage" text="Next &gt;">
+                        <font><Font size="12.0" /></font>
+                    </Button>
+                    <Label text="  Page: ">
                         <font><Font size="15.0" /></font>
                     </Label>
                     <TextField fx:id="pageIdInput" text="">

@@ -3,6 +3,9 @@ package com.dreamer;
 import com.dreamer.corpus.*;
 import com.dreamer.util.*;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -66,6 +69,12 @@ public class Controller implements Initializable {
 
     @FXML
     private Button nextVerse;
+
+    @FXML
+    private Button prevPage;
+
+    @FXML
+    private Button nextPage;
 
     @FXML
     private Button vocabularyPrevButton;
@@ -159,17 +168,26 @@ public class Controller implements Initializable {
                 1000
         );
 
-        pageIdInput.setOnAction(e -> {
-            updatePageRange();
+        pageIdInput.setOnAction(e-> {
+            updatePageView();
+        });
 
-            List<Verse> selectedVerses = preparePlayList(playRange.get());
-            playInfo.setVerses(selectedVerses);
+        prevPage.setOnAction(e -> {
+            if (currentPageId > 1) {
+                currentPageId --;
+                pageIdInput.setText(Integer.toString(currentPageId));
 
-            Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
-            List<Verse> versesInPage = preparePlayList(currentPageRange);
-            updatePageTranslationTab(versesInPage);
+                updatePageView();
+            }
+        });
 
-            updateMediaPlayer(bookRef.get());
+        nextPage.setOnAction(e -> {
+            if (currentPageId < 610) {
+                currentPageId ++;
+                pageIdInput.setText(Integer.toString(currentPageId));
+
+                updatePageView();
+            }
         });
 
         repeatCountInput.setOnAction(e -> {
@@ -225,6 +243,19 @@ public class Controller implements Initializable {
         Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
         List<Verse> versesInPage = preparePlayList(currentPageRange);
         updatePageTranslationTab(versesInPage);
+    }
+
+    private void updatePageView() {
+        updatePageRange();
+
+        List<Verse> selectedVerses = preparePlayList(playRange.get());
+        playInfo.setVerses(selectedVerses);
+
+        Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
+        List<Verse> versesInPage = preparePlayList(currentPageRange);
+        updatePageTranslationTab(versesInPage);
+
+        updateMediaPlayer(bookRef.get());
     }
 
     private void updatePageTranslationTab(List<Verse> verses) {
@@ -364,8 +395,7 @@ public class Controller implements Initializable {
 
     private static Range buildVerseRange(QuranObject quranObject, int startPageId, int pageCount) {
         Page page = quranObject.getPage(startPageId).get();
-        Optional<Page> page2Ref = quranObject.getPage(
-                Math.min(startPageId+pageCount, quranObject.getPages().size()));
+        Optional<Page> page2Ref = quranObject.getPage(startPageId+pageCount);
 
         Optional<Verse> startVerse = quranObject.getChapter(page.getChapterId()).flatMap(
                 chapter -> chapter.getVerse(page.getStartVerse()));
