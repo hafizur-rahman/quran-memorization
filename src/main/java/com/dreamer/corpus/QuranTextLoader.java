@@ -58,8 +58,6 @@ public class QuranTextLoader {
             pages.add(page);
         }
 
-        System.out.println(pages.getLast().index);
-
         return pages;
     }
 

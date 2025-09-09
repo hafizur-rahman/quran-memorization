@@ -1,6 +1,7 @@
 package com.dreamer;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,7 +11,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         System.setProperty("prism.text", "t2k");
         System.setProperty("prism.lcdtext", "false");
 
@@ -18,9 +19,20 @@ public class MainApp extends Application {
 
         Scene scene = new Scene(root);
 
-        stage.setTitle("Quran Al-Karim");
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setTitle("Quran Al-Karim");
+        primaryStage.setScene(scene);
+
+        // Handle window close request
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Closing application...");
+
+            // Perform cleanup if needed
+            Platform.exit(); // Ensures the application exits properly
+
+            System.exit(0);
+        });
+
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
