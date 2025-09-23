@@ -1,6 +1,6 @@
 package com.dreamer.corpus;
 
-public class Page {
+public class Page implements Cloneable {
     int index;
 
     int chapterId;

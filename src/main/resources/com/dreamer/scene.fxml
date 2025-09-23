@@ -5,8 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.scene.web.HTMLEditor?>
-<?import javafx.scene.web.WebView?>
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dreamer.Controller">
 <!--    <right>-->
 <!--        <TreeView fx:id="chaptersTree" visible="false" />-->
@@ -83,7 +81,7 @@
         </BorderPane>
     </right>
     <left>
-        <BorderPane>
+        <BorderPane prefWidth="1000.0">
             <center>
                 <TabPane side="LEFT">
                     <Tab fx:id="currentPage" text="Current Page" closable="false">
@@ -98,27 +96,28 @@
                         </BorderPane>
                     </Tab>
                     <Tab fx:id="currentVerse" text="Current Verse" closable="false">
-                        <VBox spacing="10" style="-fx-border-color: white; -fx-border-width: 10; -fx-border-radius: 5;">
-                            <ImageView fx:id="verseImage" fitWidth="930" preserveRatio="true" visible="true">
-                            </ImageView>
+                        <ScrollPane fitToWidth="true">
+                            <VBox spacing="10" style="-fx-border-color: white; -fx-border-width: 10; -fx-border-radius: 5;">
+                                <ImageView fx:id="verseImage" fitWidth="920" preserveRatio="true" visible="true">
+                                </ImageView>
 
-                            <Separator/>
+                                <Separator/>
 
-                            <Text fx:id="verseSyntax" text="" wrappingWidth="930">
-                                <font>
-                                    <Font name="Arial" size="30.0" />
-                                </font>
-                            </Text>
+                                <Text fx:id="verseSyntax" text="" wrappingWidth="930">
+                                    <font>
+                                        <Font name="Arial" size="30.0" />
+                                    </font>
+                                </Text>
 
-                            <Separator/>
+                                <Separator/>
 
-                            <Text fx:id="verseBengaliTranslation" text="" wrappingWidth="930">
-                                <font>
-                                    <Font name="Arial" size="23.0" />
-                                </font>
-                            </Text>
-                        </VBox>
-
+                                <Text fx:id="verseBengaliTranslation" text="" wrappingWidth="930">
+                                    <font>
+                                        <Font name="Arial" size="23.0" />
+                                    </font>
+                                </Text>
+                            </VBox>
+                        </ScrollPane>
                     </Tab>
                 </TabPane>
             </center>
