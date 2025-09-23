@@ -5,15 +5,19 @@ import java.util.Optional;
 
 public class QuranObject extends Book {
     private List<Chapter> translatedChapters;
+    private List<Chapter> syntaxChapters;
 
     private List<Page> pages;
 
     public QuranObject(String translationId, String lang,
-                       List<Chapter> chapters, List<Chapter> translatedChapters,
+                       List<Chapter> chapters,
+                       List<Chapter> translatedChapters,
+                       List<Chapter> syntaxChapters,
                        List<Page> pages) {
         super(translationId, lang, chapters);
 
         this.translatedChapters = translatedChapters;
+        this.syntaxChapters = syntaxChapters;
         this.pages = pages;
     }
 
@@ -68,5 +72,13 @@ public class QuranObject extends Book {
         }
 
         return Optional.of(pages.getLast());
+    }
+
+    public Optional<Chapter> getSyntaxChapter(int chapterId) {
+        if (chapterId < 1 || chapterId > syntaxChapters.size()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(syntaxChapters.get(chapterId-1));
     }
 }

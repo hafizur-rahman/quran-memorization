@@ -105,16 +105,14 @@ public class Controller implements Initializable {
     int chapterId = 1;
     int verseId = 1;
 
-//    @FXML
-//    TabPane currentVerseTafsirPane;
-
-    //TafsirPane tafsirPane;
+    @FXML
+    Text verseSyntax;
 
     @FXML
     Button randomVerse;
 
     Pattern pattern = Pattern.compile("(\\d+)-?(\\d+)?");
-    int currentPageId = 103;
+    int currentPageId = 318;
 
     private PageModelImpl quranModel;
 
@@ -135,6 +133,7 @@ public class Controller implements Initializable {
 
         bookRef.ifPresent(quranObject -> {
             loader.populateTranslationText(quranObject, resourcePath + "\\bn.bengali.txt");
+            loader.populateSyntaxText(quranObject, resourcePath + "\\verse_syntax.txt");
 
             //tafsirPane = TafsirPane.build(currentVerseTafsirPane, loader.getMdFileLoader(), quranObject);
         });
@@ -344,6 +343,13 @@ public class Controller implements Initializable {
         translatedVerseRef.ifPresent(verse -> {
             verseLabel.setText("Verse: " + verseId);
             verseBengaliTranslation.setText(verse.getText());
+        });
+
+        Optional<Verse> syntaxVerseRef = quranObject.getSyntaxChapter(playInfo.getCurrentVerse().getChapterId())
+                .flatMap(chapter -> chapter.getVerse(verseId));
+
+        syntaxVerseRef.ifPresent(verse -> {
+            verseSyntax.setText(verse.getText());
         });
 
         //tafsirPane.updateView(playInfo.getCurrentVerse().getChapterId()-1, verseId);

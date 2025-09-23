@@ -28,6 +28,7 @@ public class QuranTextLoader {
 
             List<Chapter> chapters = initializeChapters(data);
             List<Chapter> translatedChapters = new ArrayList<>(chapters);
+            List<Chapter> syntaxChapters = new ArrayList<>(initializeChapters(data));
 
             List<Page> pages = initializePages(data);
 
@@ -36,6 +37,7 @@ public class QuranTextLoader {
                     (String) data.get("Language"),
                     chapters,
                     translatedChapters,
+                    syntaxChapters,
                     pages
             );
         } catch (IOException e) {
@@ -140,7 +142,40 @@ public class QuranTextLoader {
         return quranObject;
     }
 
-    public List<Chapter> loadTafsir(QuranObject quranObject, String file) {
-        return mdFileLoader.loadTafsir(quranObject, file);
+    public QuranObject populateSyntaxText(QuranObject quranObject, String file) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
+            String line = reader.readLine();
+
+            int lastVerseId = 1;
+            int lastChapterId = 1;
+
+            while (line != null) {
+                final String[] parts = line.split("\\|");
+
+                if (parts.length >= 2 && !parts[0].isEmpty() && !parts[1].isEmpty()) {
+                    int chapterId = Integer.parseInt(parts[0]);
+                    int verseId = Integer.parseInt(parts[1]);
+
+                    String verseText = parts.length == 3 ? parts[2] : "";
+
+                    Optional<Chapter> chapterRef = quranObject.getSyntaxChapter(chapterId);
+
+                    if (chapterRef.isPresent()) {
+                        Chapter chapter = chapterRef.get();
+
+                        chapter.getVerses().add(new Verse(chapterId, verseId, verseText));
+
+                        lastVerseId = verseId;
+                    }
+                }
+
+                // read next line
+                line = reader.readLine();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return quranObject;
     }
 }
