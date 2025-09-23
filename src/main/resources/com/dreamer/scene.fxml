@@ -97,7 +97,7 @@
                     </Tab>
                     <Tab fx:id="currentVerse" text="Current Verse" closable="false">
                         <ScrollPane fitToWidth="true">
-                            <VBox spacing="10" style="-fx-border-color: white; -fx-border-width: 10; -fx-border-radius: 5;">
+                            <VBox spacing="10" style="-fx-border-color: lightgray; -fx-border-width: 10;">
                                 <ImageView fx:id="verseImage" fitWidth="920" preserveRatio="true" visible="true">
                                 </ImageView>
 
