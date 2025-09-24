@@ -98,12 +98,12 @@
                     <Tab fx:id="currentVerse" text="Current Verse" closable="false">
                         <ScrollPane fitToWidth="true">
                             <VBox spacing="10" style="-fx-border-color: lightgray; -fx-border-width: 10;">
-                                <ImageView fx:id="verseImage" fitWidth="920" preserveRatio="true" visible="true">
+                                <ImageView fx:id="verseImage" fitWidth="930" preserveRatio="true" visible="true">
                                 </ImageView>
 
                                 <Separator/>
 
-                                <Text fx:id="verseSyntax" text="" wrappingWidth="930">
+                                <Text fx:id="verseSyntax" wrappingWidth="930" style="-fx-text-alignment: right;">
                                     <font>
                                         <Font name="Arial" size="30.0" />
                                     </font>
@@ -111,7 +111,7 @@
 
                                 <Separator/>
 
-                                <Text fx:id="verseBengaliTranslation" text="" wrappingWidth="930">
+                                <Text fx:id="verseBengaliTranslation" wrappingWidth="930" style="-fx-text-alignment: justify;">
                                     <font>
                                         <Font name="Arial" size="23.0" />
                                     </font>
