@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -20,6 +21,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("Quran Al-Karim");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("al-quran.jpg")));
         primaryStage.setScene(scene);
 
         // Handle window close request
