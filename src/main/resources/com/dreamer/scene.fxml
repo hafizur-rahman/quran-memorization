@@ -105,7 +105,7 @@
 
                                 <Text fx:id="verseSyntax" wrappingWidth="930" style="-fx-text-alignment: right;">
                                     <font>
-                                        <Font name="Arial" size="30.0" />
+                                        <Font name="Arial" size="25.0" />
                                     </font>
                                 </Text>
 
@@ -114,6 +114,14 @@
                                 <Text fx:id="verseBengaliTranslation" wrappingWidth="930" style="-fx-text-alignment: justify;">
                                     <font>
                                         <Font name="Arial" size="23.0" />
+                                    </font>
+                                </Text>
+
+                                <Separator/>
+
+                                <Text fx:id="verseTafsir" wrappingWidth="930" style="-fx-text-alignment: justify;">
+                                    <font>
+                                        <Font name="Arial" size="15.0" />
                                     </font>
                                 </Text>
                             </VBox>

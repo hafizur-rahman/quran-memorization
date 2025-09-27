@@ -3,9 +3,7 @@ package com.dreamer;
 import com.dreamer.corpus.*;
 import com.dreamer.util.*;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -20,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.sql.*;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
@@ -109,6 +108,9 @@ public class Controller implements Initializable {
     Text verseSyntax;
 
     @FXML
+    Text verseTafsir;
+
+    @FXML
     Button randomVerse;
 
     Pattern pattern = Pattern.compile("(\\d+)-?(\\d+)?");
@@ -134,8 +136,6 @@ public class Controller implements Initializable {
         bookRef.ifPresent(quranObject -> {
             loader.populateTranslationText(quranObject, resourcePath + "\\bn.bengali.txt");
             loader.populateSyntaxText(quranObject, resourcePath + "\\verse_syntax.txt");
-
-            //tafsirPane = TafsirPane.build(currentVerseTafsirPane, loader.getMdFileLoader(), quranObject);
         });
 
         updatePageRange();
@@ -352,7 +352,7 @@ public class Controller implements Initializable {
             verseSyntax.setText(verse.getText());
         });
 
-        //tafsirPane.updateView(playInfo.getCurrentVerse().getChapterId()-1, verseId);
+        verseTafsir.setText(getTafsir(chapterId, verseId));
 
         quranView.setCurrentPageIndex(currentPageId+1);
 
@@ -374,6 +374,29 @@ public class Controller implements Initializable {
             atEndOfMedia = false;
         }
     }
+
+    private String getTafsir(int chapterId, int verseId) {
+        var url = "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirzakaria.db";
+        var sql = "SELECT text FROM verses WHERE sura=? and ayah=?";
+
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, chapterId);
+            stmt.setInt(2, verseId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String tafsir = rs.getString("text");
+
+                    return tafsir;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     private void updatePageRange() {
         final Matcher matcher = pattern.matcher(pageIdInput.getText());
