@@ -103,7 +103,7 @@
 
                                 <Separator/>
 
-                                <Text fx:id="verseSyntax" wrappingWidth="930" style="-fx-text-alignment: right;">
+                                <Text fx:id="verseSyntax" wrappingWidth="930" fill="dimgray" lineSpacing="6" style="-fx-text-alignment: right;">
                                     <font>
                                         <Font name="Arial" size="25.0" />
                                     </font>
@@ -111,15 +111,15 @@
 
                                 <Separator/>
 
-                                <Text fx:id="verseBengaliTranslation" wrappingWidth="930" style="-fx-text-alignment: justify;">
+                                <Text fx:id="verseBengaliTranslation" wrappingWidth="930" fill="slategrey" lineSpacing="6" style="-fx-text-alignment: justify;">
                                     <font>
-                                        <Font name="Arial" size="23.0" />
+                                        <Font name="Arial" size="20.0" />
                                     </font>
                                 </Text>
 
                                 <Separator/>
 
-                                <Text fx:id="verseTafsir" wrappingWidth="930" style="-fx-text-alignment: justify;">
+                                <Text fx:id="verseTafsir" wrappingWidth="930" fill="dimgray" lineSpacing="6" style="-fx-text-alignment: justify;">
                                     <font>
                                         <Font name="Arial" size="15.0" />
                                     </font>
