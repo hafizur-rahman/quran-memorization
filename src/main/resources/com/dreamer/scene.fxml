@@ -100,9 +100,12 @@
     </top>
     <right>
         <BorderPane>
-            <left>
+            <center>
                 <ImageView fx:id="pageImage" fitWidth="600" fitHeight="780" preserveRatio="true"/>
-            </left>
+            </center>
+            <right>
+                <Separator/>
+            </right>
         </BorderPane>
     </right>
     <left>
