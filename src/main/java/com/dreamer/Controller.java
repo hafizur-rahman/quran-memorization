@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
@@ -45,16 +46,11 @@ public class Controller implements Initializable {
     @FXML
     private Text pageBengaliTranslation;
 
-
     @FXML
     private ImageView verseImage;
 
     @FXML
     private ImageView pageImage;
-
-    @FXML
-    private ImageView vocabularyImage;
-
 
     private BookView quranView;
 
@@ -76,19 +72,13 @@ public class Controller implements Initializable {
     private Button nextPage;
 
     @FXML
-    private Button vocabularyPrevButton;
+    private ToggleButton showDetail;
 
     @FXML
-    private Button vocabularyNextButton;
-
-//    @FXML
-//    private Button tafsirJalalainPrevButton;
-//
-//    @FXML
-//    private Button tafsirJalalainNextButton;
+    private BorderPane mainPane;
 
     @FXML
-    private HTMLEditor similarVerses;
+    private BorderPane detailPane;
 
     @FXML
     private CheckBox playContinuous;
@@ -237,6 +227,16 @@ public class Controller implements Initializable {
             playInfo.moveToRandomVerse();
 
             updateMediaPlayer(bookRef.get());
+        });
+
+        showDetail.setOnAction(e -> {
+            detailPane.setVisible(showDetail.isSelected());
+
+            if (showDetail.isSelected()) {
+                mainPane.getScene().getWindow().sizeToScene();
+            } else {
+                mainPane.getScene().getWindow().setWidth(570);
+            }
         });
 
         Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
