@@ -10,18 +10,7 @@
     <left>
         <BorderPane>
             <top>
-                <HBox spacing="10" alignment="BASELINE_CENTER">
-                    <Button fx:id="prevPage" text="&lt; Prev">
-                        <font>
-                            <Font size="12.0"/>
-                        </font>
-                    </Button>
-
-                    <Button fx:id="nextPage" text="Next &gt;">
-                        <font>
-                            <Font size="12.0"/>
-                        </font>
-                    </Button>
+                <HBox spacing="5" alignment="BASELINE_CENTER">
                     <Label text="Page:">
                         <font>
                             <Font size="15.0"/>
@@ -32,6 +21,17 @@
                             <Font size="12.0"/>
                         </font>
                     </TextField>
+                    <Button fx:id="prevPage" text="&lt; Prev">
+                        <font>
+                            <Font size="12.0"/>
+                        </font>
+                    </Button>
+                    <Button fx:id="nextPage" text="Next &gt;">
+                        <font>
+                            <Font size="12.0"/>
+                        </font>
+                    </Button>
+
                     <Label text="Repeat:">
                         <font>
                             <Font size="15.0"/>
@@ -42,6 +42,18 @@
                             <Font size="12.0"/>
                         </font>
                     </TextField>
+
+                    <CheckBox fx:id="playContinuous" text="Continuous">
+                        <font>
+                            <Font size="15.0"/>
+                        </font>
+                    </CheckBox>
+
+                    <ToggleButton fx:id="playButton" text="&gt;">
+                        <font>
+                            <Font size="12.0"/>
+                        </font>
+                    </ToggleButton>
 
                     <ToggleButton fx:id="showDetail" text="Detail" selected="true">
                         <font>
@@ -91,18 +103,6 @@
                         </font>
                     </Button>
 
-                    <CheckBox fx:id="playContinuous" text="Continuous">
-                        <font>
-                            <Font size="15.0"/>
-                        </font>
-                    </CheckBox>
-
-                    <ToggleButton fx:id="playButton" text="&gt;">
-                        <font>
-                            <Font size="12.0"/>
-                        </font>
-                    </ToggleButton>
-
                     <Button fx:id="randomVerse" text="Pick Random">
                         <font>
                             <Font size="12.0"/>
@@ -114,27 +114,6 @@
                 <BorderPane prefWidth="1000.0">
                     <center>
                         <TabPane side="LEFT">
-                            <Tab fx:id="currentPage" text="Current Page" closable="false">
-                                <ScrollPane fitToWidth="true"
-                                            style="-fx-border-color: lightgray; -fx-border-width: 10;">
-                                    <VBox spacing="20">
-                                        <Separator/>
-
-                                        <BorderPane>
-                                            <center>
-                                                <Text fx:id="pageBengaliTranslation" text="" wrappingWidth="570"
-                                                      lineSpacing="6"
-                                                      textAlignment="JUSTIFY">
-                                                    <font>
-                                                        <Font name="Arial" size="18.0"/>
-                                                    </font>
-                                                </Text>
-                                            </center>
-                                        </BorderPane>
-                                    </VBox>
-                                </ScrollPane>
-
-                            </Tab>
                             <Tab fx:id="currentVerse" text="Current Verse" closable="false">
                                 <ScrollPane fitToWidth="true"
                                             style="-fx-border-color: lightgray; -fx-border-width: 10;">
@@ -175,6 +154,26 @@
                                                       textAlignment="JUSTIFY">
                                                     <font>
                                                         <Font name="Arial" size="15.0"/>
+                                                    </font>
+                                                </Text>
+                                            </center>
+                                        </BorderPane>
+                                    </VBox>
+                                </ScrollPane>
+                            </Tab>
+                            <Tab fx:id="currentPage" text="Current Page" closable="false">
+                                <ScrollPane fitToWidth="true"
+                                            style="-fx-border-color: lightgray; -fx-border-width: 10;">
+                                    <VBox spacing="20">
+                                        <Separator/>
+
+                                        <BorderPane>
+                                            <center>
+                                                <Text fx:id="pageBengaliTranslation" text="" wrappingWidth="570"
+                                                      lineSpacing="6"
+                                                      textAlignment="JUSTIFY">
+                                                    <font>
+                                                        <Font name="Arial" size="18.0"/>
                                                     </font>
                                                 </Text>
                                             </center>

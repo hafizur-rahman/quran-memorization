@@ -235,7 +235,7 @@ public class Controller implements Initializable {
             if (showDetail.isSelected()) {
                 mainPane.getScene().getWindow().sizeToScene();
             } else {
-                mainPane.getScene().getWindow().setWidth(570);
+                mainPane.getScene().getWindow().setWidth(560);
             }
         });
 
