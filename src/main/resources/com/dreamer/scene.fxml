@@ -56,9 +56,9 @@
                     <center>
                         <ImageView fx:id="pageImage" fitWidth="600" fitHeight="780" preserveRatio="true"/>
                     </center>
-                    <right>
+                    <left>
                         <Separator/>
-                    </right>
+                    </left>
                 </BorderPane>
             </center>
         </BorderPane>
