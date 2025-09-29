@@ -1,6 +1,8 @@
 package com.dreamer;
 
 import com.dreamer.corpus.*;
+import com.dreamer.ui.DoubleColumnTafsir;
+import com.dreamer.ui.TafsirController;
 import com.dreamer.util.*;
 import javafx.application.Platform;
 
@@ -13,13 +15,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
-import javafx.scene.web.HTMLEditor;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.sql.*;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
@@ -98,7 +98,11 @@ public class Controller implements Initializable {
     Text verseSyntax;
 
     @FXML
-    Text verseTafsir;
+    private TabPane tafsirPane;
+
+
+    private TafsirController tafsirController;
+
 
     @FXML
     Button randomVerse;
@@ -109,6 +113,7 @@ public class Controller implements Initializable {
     private PageModelImpl quranModel;
 
     private String resourcePath;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -127,6 +132,8 @@ public class Controller implements Initializable {
             loader.populateTranslationText(quranObject, resourcePath + "\\bn.bengali.txt");
             loader.populateSyntaxText(quranObject, resourcePath + "\\verse_syntax.txt");
         });
+
+        tafsirController = new TafsirController(resourcePath, tafsirPane);
 
         updatePageRange();
 
@@ -352,7 +359,7 @@ public class Controller implements Initializable {
             verseSyntax.setText(verse.getText());
         });
 
-        verseTafsir.setText(getTafsir(chapterId, verseId));
+        tafsirController.updateUI(chapterId, verseId);
 
         quranView.setCurrentPageIndex(currentPageId+1);
 
@@ -374,29 +381,6 @@ public class Controller implements Initializable {
             atEndOfMedia = false;
         }
     }
-
-    private String getTafsir(int chapterId, int verseId) {
-        var url = "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirzakaria.db";
-        var sql = "SELECT text FROM verses WHERE sura=? and ayah=?";
-
-        try (Connection conn = DriverManager.getConnection(url); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, chapterId);
-            stmt.setInt(2, verseId);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    String tafsir = rs.getString("text");
-
-                    return tafsir;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
 
     private void updatePageRange() {
         final Matcher matcher = pattern.matcher(pageIdInput.getText());

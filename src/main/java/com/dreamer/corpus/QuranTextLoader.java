@@ -1,6 +1,5 @@
 package com.dreamer.corpus;
 
-import com.dreamer.util.loader.MDFileLoader;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import java.io.*;
@@ -12,11 +11,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public class QuranTextLoader {
-    private MDFileLoader mdFileLoader = new MDFileLoader();
-
-    public MDFileLoader getMdFileLoader() {
-        return mdFileLoader;
-    }
 
     public Optional<QuranObject> loadMetaData(InputStream inputStream) {
         QuranObject quranObject = null;

@@ -113,7 +113,7 @@
             <center>
                 <BorderPane prefWidth="1000.0">
                     <center>
-                        <TabPane side="LEFT">
+                        <TabPane side="TOP">
                             <Tab fx:id="currentVerse" text="Current Verse" closable="false">
                                 <ScrollPane fitToWidth="true"
                                             style="-fx-border-color: lightgray; -fx-border-width: 10;">
@@ -121,15 +121,6 @@
                                         <ImageView fx:id="verseImage" fitWidth="930" preserveRatio="true"
                                                    visible="true">
                                         </ImageView>
-
-                                        <Separator/>
-
-                                        <Text fx:id="verseSyntax" wrappingWidth="930" fill="dimgray" lineSpacing="6"
-                                              style="-fx-text-alignment: right;">
-                                            <font>
-                                                <Font name="Arial" size="25.0"/>
-                                            </font>
-                                        </Text>
 
                                         <Separator/>
 
@@ -145,19 +136,21 @@
                                             </center>
                                         </BorderPane>
 
-                                        <Separator/>
-
                                         <BorderPane>
-                                            <center>
-                                                <Text fx:id="verseTafsir" wrappingWidth="930" fill="dimgray"
-                                                      lineSpacing="6"
-                                                      textAlignment="JUSTIFY">
-                                                    <font>
-                                                        <Font name="Arial" size="15.0"/>
-                                                    </font>
-                                                </Text>
-                                            </center>
+                                            <bottom>
+                                                <TabPane fx:id="tafsirPane" side="TOP">
+                                                    <Tab text="Syntax" closable="false">
+                                                        <Text fx:id="verseSyntax" wrappingWidth="930" fill="dimgray" lineSpacing="6"
+                                                              style="-fx-text-alignment: right;">
+                                                            <font>
+                                                                <Font name="Arial" size="25.0"/>
+                                                            </font>
+                                                        </Text>
+                                                    </Tab>
+                                                </TabPane>
+                                            </bottom>
                                         </BorderPane>
+
                                     </VBox>
                                 </ScrollPane>
                             </Tab>
