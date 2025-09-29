@@ -27,18 +27,11 @@ public class TafsirController {
                 "jdbc:sqlite:"+ resourcePath + "/dbs/bn_mkhan.db",
                 TextAlignment.JUSTIFY));
 
-        tafsirViewList.add(new SingleColumnTafsir("Ibn Kathir",
-                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_mujibur.db",
-                TextAlignment.JUSTIFY));
-
         tafsirViewList.add(new SingleColumnTafsir("Zakaria",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirzakaria.db",
                 TextAlignment.JUSTIFY));
         tafsirViewList.add(new SingleColumnTafsir("Bayaan",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirbayaan.db",
-                TextAlignment.JUSTIFY));
-        tafsirViewList.add(new SingleColumnTafsir("Taisirul",
-                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_taisirul.db",
                 TextAlignment.JUSTIFY));
         tafsirViewList.add(new DoubleColumnTafsir(
                 "Jalalayn",
