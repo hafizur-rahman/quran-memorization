@@ -19,12 +19,12 @@ public class SingleColumnTafsir implements TafsirView {
 
     private Tab tab = new Tab();
     private Text text;
-    private TextAlignment textAlignment;
+    private boolean isArabic;
 
-    public SingleColumnTafsir(String title, String jdbcUrl, TextAlignment textAlignment) {
+    public SingleColumnTafsir(String title, String jdbcUrl, boolean isArabic) {
         this.title = title;
         this.jdbcUrl = jdbcUrl;
-        this.textAlignment = textAlignment;
+        this.isArabic = isArabic;
 
         buildUI();
     }
@@ -36,11 +36,11 @@ public class SingleColumnTafsir implements TafsirView {
         scrollPane.setFitToWidth(true);
 
         text = new Text();
-        text.setFont(Font.font("Arial", 15));
+        text.setFont(Font.font("Arial", isArabic ? 24 : 16));
         text.setFill(Paint.valueOf("dimgray"));
         text.setLineSpacing(6);
         text.setWrappingWidth(930);
-        text.setTextAlignment(textAlignment);
+        text.setTextAlignment(isArabic ? TextAlignment.RIGHT : TextAlignment.JUSTIFY);
 
         BorderPane borderPane = new BorderPane();
 

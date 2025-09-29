@@ -140,12 +140,15 @@
                                             <bottom>
                                                 <TabPane fx:id="tafsirPane" side="TOP">
                                                     <Tab text="Syntax" closable="false">
-                                                        <Text fx:id="verseSyntax" wrappingWidth="930" fill="dimgray" lineSpacing="6"
-                                                              style="-fx-text-alignment: right;">
-                                                            <font>
-                                                                <Font name="Arial" size="25.0"/>
-                                                            </font>
-                                                        </Text>
+                                                        <VBox spacing="10">
+                                                            <Separator/>
+                                                            <Text fx:id="verseSyntax" wrappingWidth="930" fill="dimgray" lineSpacing="6"
+                                                                  style="-fx-text-alignment: right;">
+                                                                <font>
+                                                                    <Font name="Arial" size="25.0"/>
+                                                                </font>
+                                                            </Text>
+                                                        </VBox>
                                                     </Tab>
                                                 </TabPane>
                                             </bottom>

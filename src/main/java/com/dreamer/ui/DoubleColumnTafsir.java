@@ -40,7 +40,7 @@ public class DoubleColumnTafsir implements TafsirView {
         BorderPane borderPane = new BorderPane();
 
         text1 = new Text();
-        text1.setFont(Font.font("Arial", 21));
+        text1.setFont(Font.font("Arial", 24));
         text1.setFill(Paint.valueOf("dimgray"));
         text1.setLineSpacing(6);
         text1.setWrappingWidth(450);
@@ -55,8 +55,8 @@ public class DoubleColumnTafsir implements TafsirView {
 
         HBox hBox = new HBox(10, text1, new Separator(), text2);
         borderPane.setBottom(hBox);
-
-        scrollPane.setContent(hBox);
+        borderPane.setTop(new Separator());
+        scrollPane.setContent(borderPane);
 
         tab.setContent(scrollPane);
         tab.setClosable(false);

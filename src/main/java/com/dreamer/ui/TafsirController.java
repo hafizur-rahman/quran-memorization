@@ -23,20 +23,19 @@ public class TafsirController {
     }
 
     private void initialize() {
-        tafsirViewList.add(new SingleColumnTafsir("Ma'ariful Quran",
-                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_mkhan.db",
-                TextAlignment.JUSTIFY));
-
-        tafsirViewList.add(new SingleColumnTafsir("Zakaria",
+        tafsirViewList.add(new SingleColumnTafsir("Abu Bakar Zakaria",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirzakaria.db",
-                TextAlignment.JUSTIFY));
+                false));
         tafsirViewList.add(new SingleColumnTafsir("Bayaan",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirbayaan.db",
-                TextAlignment.JUSTIFY));
+                false));
         tafsirViewList.add(new DoubleColumnTafsir(
                 "Jalalayn",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/ar_jalalayn.db",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/en_jalalayn.db"));
+        tafsirViewList.add(new SingleColumnTafsir("Muyassar",
+                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_muyassar.db",
+                true));
 
         for (TafsirView view: tafsirViewList) {
             tafsirPane.getTabs().add(view.getTab());
