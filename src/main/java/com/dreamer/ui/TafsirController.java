@@ -23,6 +23,9 @@ public class TafsirController {
     }
 
     private void initialize() {
+        tafsirViewList.add(new SingleColumnTafsir("Erab",
+                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_e3rab.db",
+                true));
         tafsirViewList.add(new SingleColumnTafsir("Abu Bakar Zakaria",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirzakaria.db",
                 false));
