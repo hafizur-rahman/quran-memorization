@@ -1,0 +1,15 @@
+{
+  "chapters": {
+    {"chapterId": , "title": , "titleEnglish", "revelationOrder", "verseCount": "pageStart", "pageEnd"},
+  },
+  "juz": [
+    {"juzId": "1", "firstPageId": 1, "lastPageId": 20 }
+  ],
+  "pages": [
+    {
+      "pageId": 1, "verses": [
+        {"chapterId": , "verseIdStart": , "verseIdEnd": }
+      ]
+    }
+  ]
+}
