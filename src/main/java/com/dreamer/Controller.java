@@ -1,9 +1,9 @@
 package com.dreamer;
 
 import com.dreamer.corpus.*;
-import com.dreamer.ui.DoubleColumnTafsir;
 import com.dreamer.ui.TafsirController;
 import com.dreamer.util.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
 
 import javafx.fxml.FXML;
@@ -16,8 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.*;
@@ -108,16 +107,20 @@ public class Controller implements Initializable {
     Button randomVerse;
 
     Pattern pattern = Pattern.compile("(\\d+)-?(\\d+)?");
-    int currentPageId = 318;
+    int currentPageId = 1;
 
     private PageModelImpl quranModel;
 
     private String resourcePath;
 
+    private AppConfig appConfig;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resourcePath = System.getProperty("quranmemo.resource.path");
+
+        loadConfig();
 
         quranModel = new PageModelImpl(resourcePath + "\\page_images");
         quranView = new BookView(quranModel, pageImage);
@@ -469,5 +472,26 @@ public class Controller implements Initializable {
         });
 
         return mediaPlayer;
+    }
+
+    public void saveConfig() {
+        appConfig.setPageId(currentPageId);
+
+        try (FileWriter f = new FileWriter(new File(resourcePath + File.separator + "config.json"))) {
+            objectMapper.writeValue(f, appConfig);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadConfig() {
+        try (FileInputStream f = new FileInputStream(new File(resourcePath + File.separator + "config.json"))) {
+            appConfig = objectMapper.readValue(f, AppConfig.class);
+        } catch (Exception e) {
+            appConfig = new AppConfig();
+            appConfig.setPageId(1);
+        }
+
+        currentPageId = appConfig.getPageId();
     }
 }

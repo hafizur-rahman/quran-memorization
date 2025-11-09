@@ -2,9 +2,7 @@ package com.dreamer;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -18,7 +16,8 @@ public class MainApp extends Application {
         System.setProperty("prism.text", "t2k");
         System.setProperty("prism.lcdtext", "false");
 
-        Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(getClass().getResource("scene.fxml").openStream());
 
         Scene scene = new Scene(root);
 
@@ -29,6 +28,9 @@ public class MainApp extends Application {
         // Handle window close request
         primaryStage.setOnCloseRequest(event -> {
             System.out.println("Closing application...");
+
+            Controller controller = fxmlLoader.getController();
+            controller.saveConfig();
 
             // Perform cleanup if needed
             Platform.exit(); // Ensures the application exits properly
