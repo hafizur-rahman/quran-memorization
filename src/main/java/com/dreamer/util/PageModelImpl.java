@@ -20,14 +20,15 @@ public class PageModelImpl implements PageModel {
     public Image getImage(int pageNumber) {
         Image pageImage;
 
-        File file = new File(imageDirPath, String.format("/p%03d.gif", pageNumber));
+        String fileName = String.format("/p%03d.gif", pageNumber);
+        File file = new File(imageDirPath, fileName);
 
         try {
             pageImage = new Image(new FileInputStream(file));
         } catch (Exception ex) {
             String juzId = String.format("%02d", (pageNumber / 20) + 1);
 
-            throw new RuntimeException("Page image not found: " + file + ". You can download image from https://www.quranclassonline.com/Maktab/Para-" + juzId + ".html");
+            throw new RuntimeException("Page image not found: " + file + ". You can download image from https://www.equranschool.com/quranreading/quraan_images/" + file.getName());
         }
         return pageImage;
     }
