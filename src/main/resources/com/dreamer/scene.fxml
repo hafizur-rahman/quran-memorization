@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
+<?import com.dreamer.ui.IrabTableView?>
 <BorderPane fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dreamer.Controller">
     <left>
@@ -114,7 +114,7 @@
                 <BorderPane prefWidth="1000.0">
                     <center>
                         <TabPane side="TOP">
-                            <Tab fx:id="currentVerse" text="Current Verse" closable="false">
+                            <Tab fx:id="currentVerse" text="Translation" closable="false">
                                 <ScrollPane fitToWidth="true"
                                             style="-fx-border-color: lightgray; -fx-border-width: 10;">
                                     <VBox spacing="10">
@@ -139,17 +139,7 @@
                                         <BorderPane>
                                             <bottom>
                                                 <TabPane fx:id="tafsirPane" side="TOP">
-                                                    <Tab text="Syntax" closable="false">
-                                                        <VBox spacing="10">
-                                                            <Separator/>
-                                                            <Text fx:id="verseSyntax" wrappingWidth="930" fill="dimgray" lineSpacing="6"
-                                                                  style="-fx-text-alignment: right;">
-                                                                <font>
-                                                                    <Font name="Arial" size="25.0"/>
-                                                                </font>
-                                                            </Text>
-                                                        </VBox>
-                                                    </Tab>
+
                                                 </TabPane>
                                             </bottom>
                                         </BorderPane>
@@ -157,25 +147,25 @@
                                     </VBox>
                                 </ScrollPane>
                             </Tab>
-                            <Tab fx:id="currentPage" text="Current Page" closable="false">
-                                <ScrollPane fitToWidth="true"
-                                            style="-fx-border-color: lightgray; -fx-border-width: 10;">
-                                    <VBox spacing="20">
-                                        <Separator/>
 
+                            <Tab fx:id="irabTab" text="I'rab" closable="false">
+                                <BorderPane>
+                                    <top>
                                         <BorderPane>
                                             <center>
-                                                <Text fx:id="pageBengaliTranslation" text="" wrappingWidth="570"
-                                                      lineSpacing="6"
-                                                      textAlignment="JUSTIFY">
-                                                    <font>
-                                                        <Font name="Arial" size="18.0"/>
-                                                    </font>
-                                                </Text>
+                                                <ImageView fx:id="verseImage2" fitWidth="650" preserveRatio="true" visible="true">
+                                                </ImageView>
                                             </center>
                                         </BorderPane>
-                                    </VBox>
-                                </ScrollPane>
+                                    </top>
+                                    <center>
+                                        <TabPane fx:id="irabPane">
+                                        </TabPane>
+                                    </center>
+                                    <right>
+                                        <Separator/>
+                                    </right>
+                                </BorderPane>
                             </Tab>
                         </TabPane>
                     </center>

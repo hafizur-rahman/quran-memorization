@@ -1,25 +1,35 @@
 package com.dreamer;
 
 import com.dreamer.corpus.*;
+import com.dreamer.ui.IrabTableView;
+import com.dreamer.ui.SyntaxAnalysisController;
 import com.dreamer.ui.TafsirController;
 import com.dreamer.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,11 +52,12 @@ public class Controller implements Initializable {
     @FXML
     private Text verseBengaliTranslation;
 
-    @FXML
-    private Text pageBengaliTranslation;
 
     @FXML
     private ImageView verseImage;
+
+    @FXML
+    private ImageView verseImage2;
 
     @FXML
     private ImageView pageImage;
@@ -94,14 +105,14 @@ public class Controller implements Initializable {
     int verseId = 1;
 
     @FXML
-    Text verseSyntax;
-
-    @FXML
     private TabPane tafsirPane;
-
 
     private TafsirController tafsirController;
 
+    @FXML
+    TabPane irabPane;
+
+    private SyntaxAnalysisController syntaxAnalysisController;
 
     @FXML
     Button randomVerse;
@@ -137,6 +148,7 @@ public class Controller implements Initializable {
         });
 
         tafsirController = new TafsirController(resourcePath, tafsirPane);
+        syntaxAnalysisController = new SyntaxAnalysisController(bookRef, resourcePath, irabPane);
 
         updatePageRange();
 
@@ -249,9 +261,6 @@ public class Controller implements Initializable {
             }
         });
 
-        Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
-        List<Verse> versesInPage = preparePlayList(currentPageRange);
-        updatePageTranslationTab(versesInPage);
     }
 
     private void updatePageView() {
@@ -260,28 +269,10 @@ public class Controller implements Initializable {
         List<Verse> selectedVerses = preparePlayList(playRange.get());
         playInfo.setVerses(selectedVerses);
 
-        Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
-        List<Verse> versesInPage = preparePlayList(currentPageRange);
-        updatePageTranslationTab(versesInPage);
-
         updateMediaPlayer(bookRef.get());
-    }
 
-    private void updatePageTranslationTab(List<Verse> verses) {
-        StringBuilder pageTranslation = new StringBuilder();
-
-        for (Verse verse: verses) {
-            int verseId = verse.getVerseId();
-
-            if (verseId == 1) {
-                bookRef.get().getChapter(verse.getChapterId()).ifPresent(chapter -> {
-                    pageTranslation.append("\n\n Sura ").append(chapter.getName()).append("\n");
-                });
-            }
-
-            pageTranslation.append("(").append(verseId).append(") ").append(verse.getText()).append(" ");
-        }
-        pageBengaliTranslation.setText(pageTranslation.toString());
+//        irabulKalimat.updateFor(chapterId, verseId);
+//        irabulJumla.updateFor(chapterId, verseId);
     }
 
     private List<Verse> preparePlayList(Range pageRange) {
@@ -330,10 +321,6 @@ public class Controller implements Initializable {
         Optional<Page> currentPage = quranObject.locatePageByVerse(playInfo.getCurrentVerse());
         if (currentPageId != currentPage.get().getIndex()) {
             currentPageId = currentPage.get().getIndex();
-
-            Range currentPageRange = buildVerseRange(bookRef.get(), currentPageId, 1);
-            List<Verse> versesInPage = preparePlayList(currentPageRange);
-            updatePageTranslationTab(versesInPage);
         }
 
         Optional<Verse> translatedVerseRef = quranObject.getTranslatedChapter(playInfo.getCurrentVerse().getChapterId())
@@ -341,7 +328,9 @@ public class Controller implements Initializable {
 
         String imageFileName = "verse_images/" + chapterId + "_" + verseId + ".png";
         try {
-            verseImage.setImage(new Image(new FileInputStream(resourcePath + "\\" + imageFileName)));
+            javafx.scene.image.Image image = new javafx.scene.image.Image(new FileInputStream(resourcePath + "\\" + imageFileName));
+            verseImage.setImage(image);
+            verseImage2.setImage(image);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -355,14 +344,8 @@ public class Controller implements Initializable {
             verseBengaliTranslation.setText(verse.getText());
         });
 
-        Optional<Verse> syntaxVerseRef = quranObject.getSyntaxChapter(playInfo.getCurrentVerse().getChapterId())
-                .flatMap(chapter -> chapter.getVerse(verseId));
-
-        syntaxVerseRef.ifPresent(verse -> {
-            verseSyntax.setText(verse.getText());
-        });
-
         tafsirController.updateUI(chapterId, verseId);
+        syntaxAnalysisController.updateUI(chapterId, verseId);
 
         quranView.setCurrentPageIndex(currentPageId+1);
 
@@ -494,4 +477,65 @@ public class Controller implements Initializable {
 
         currentPageId = appConfig.getPageId();
     }
+
+//
+//    private void prepareIrabulJumla() {
+//        irabulJumla.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT); // Essential for Arabic
+//        irabulJumla.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//        irabulJumla.setStyle("-fx-font-size: 22px; -fx-font-family: \"Arial\";");
+//
+//        TableColumn<AnalysisRow, AnalysisRow> column = new TableColumn<>("الإعراب");
+//        column.setPrefWidth(700);
+//
+//        // We point the value factory to the object itself so the cell has access to all segments
+//        column.setCellValueFactory(param -> new javafx.beans.property.SimpleObjectProperty<>(param.getValue()));
+//
+//        // 3. The Magic: Custom Cell Factory using TextFlow
+//        column.setCellFactory(param -> new TableCell<AnalysisRow, AnalysisRow>() {
+//            @Override
+//            protected void updateItem(AnalysisRow row, boolean empty) {
+//                super.updateItem(row, empty);
+//
+//                if (empty || row == null) {
+//                    setGraphic(null);
+//                } else {
+//                    // Create a TextFlow to hold multiple colored text segments
+//                    TextFlow textFlow = new TextFlow();
+//                    textFlow.setTextAlignment(TextAlignment.JUSTIFY);
+//
+//                    for (Segment segment : row.getSegments()) {
+//                        Text textNode = new Text(segment.getText());
+//                        try {
+//                            // Convert string color (e.g., "brown") to JavaFX Color
+//                            textNode.setFill(javafx.scene.paint.Color.web(segment.getColor()));
+//                        } catch (Exception e) {
+//                            textNode.setFill(Color.BLACK); // Fallback if color is invalid
+//                        }
+//                        textFlow.getChildren().add(textNode);
+//                    }
+//                    setGraphic(textFlow);
+//
+//                    double height = (Math.ceil(textFlow.prefWidth(-1) / 650) + 1) * textFlow.prefHeight(-1) * 1.5;
+//
+//                    setPrefHeight(height);
+//                }
+//            }
+//        });
+//
+//        irabulJumla.getColumns().add(column);
+//    }
+//
+//    private void updateIrabualKalimat(int suraId, int verseId) {
+//
+//        try {
+//            String filePath = resourcePath + "\\quran-grammer\\irob-default\\" + bookRef.get().getChapter(suraId).get().getName().toLowerCase() + "\\" + verseId + ".json";
+//
+//            ObservableList<AnalysisRow> masterData = FXCollections.observableArrayList(JsonParserService.loadData(filePath));
+//
+//            irabulJumla.setItems(masterData);
+//            irabulJumla.refresh();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
