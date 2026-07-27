@@ -4,12 +4,15 @@ import com.dreamer.corpus.QuranObject;
 import com.dreamer.util.AnalysisRow;
 import com.dreamer.util.JsonParserService;
 import com.dreamer.util.Segment;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.skin.TableHeaderRow;
+import javafx.scene.control.skin.TableViewSkin;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -36,14 +39,14 @@ public class IrabTableView extends TableView<AnalysisRow> {
     }
 
     private void setupColumns() {
-        TableColumn<AnalysisRow, AnalysisRow> column = new TableColumn<>("الإعراب");
-        column.setPrefWidth(700);
+        TableColumn<AnalysisRow, AnalysisRow> irabColumn = new TableColumn<>("الإعراب");
+        irabColumn.setPrefWidth(700);
 
         // We point the value factory to the object itself so the cell has access to all segments
-        column.setCellValueFactory(param -> new javafx.beans.property.SimpleObjectProperty<>(param.getValue()));
+        irabColumn.setCellValueFactory(param -> new javafx.beans.property.SimpleObjectProperty<>(param.getValue()));
 
         // 3. The Magic: Custom Cell Factory using TextFlow
-        column.setCellFactory(param -> new TableCell<AnalysisRow, AnalysisRow>() {
+        irabColumn.setCellFactory(param -> new TableCell<AnalysisRow, AnalysisRow>() {
             @Override
             protected void updateItem(AnalysisRow row, boolean empty) {
                 super.updateItem(row, empty);
@@ -75,7 +78,8 @@ public class IrabTableView extends TableView<AnalysisRow> {
             }
         });
 
-        getColumns().add(column);
+        irabColumn.setSortable(false);
+        getColumns().add(irabColumn);
     }
 
     public void updateUI(int suraId, int verseId) {
