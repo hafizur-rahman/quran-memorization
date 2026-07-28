@@ -148,7 +148,7 @@
                                 </ScrollPane>
                             </Tab>
 
-                            <Tab fx:id="irabTab" text="I'rab" closable="false">
+                            <Tab fx:id="irabTab" text="Analysis" closable="false">
                                 <BorderPane>
                                     <top>
                                         <BorderPane>

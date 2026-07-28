@@ -25,7 +25,7 @@ public class VocabularyTableView extends TableView<QuranWord> {
 
         setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        setStyle("-fx-font-size: 15px; -fx-font-family: \"Times New Roman\";");
+        setStyle("-fx-font-size: 18px; -fx-font-family: \"Times New Roman\";");
 
         setupColumns();
     }
@@ -44,7 +44,7 @@ public class VocabularyTableView extends TableView<QuranWord> {
         TableColumn<QuranWord, String> colRoot = new TableColumn<>("Root");
         colRoot.setCellValueFactory(param -> new javafx.beans.property.SimpleObjectProperty<>(param.getValue().root));
         colRoot.setPrefWidth(35);
-        colRoot.setStyle("-fx-font-size: 18px; -fx-font-family: \"Times New Roman\";");
+        colRoot.setStyle("-fx-font-size: 20px; -fx-font-family: \"Times New Roman\";");
 
         TableColumn<QuranWord, String> colSubheading = new TableColumn<>("Subheading");
         colSubheading.setCellValueFactory(param -> new javafx.beans.property.SimpleObjectProperty<>(param.getValue().subheading));
@@ -53,7 +53,7 @@ public class VocabularyTableView extends TableView<QuranWord> {
         TableColumn<QuranWord, String> colCpPair = new TableColumn<>("CP Pair");
         colCpPair.setCellValueFactory(param -> new javafx.beans.property.SimpleObjectProperty<>(param.getValue().cpPair));
         colCpPair.setPrefWidth(100);
-        colCpPair.setStyle("-fx-font-size: 18px; -fx-font-family: \"Times New Roman\";");
+        colCpPair.setStyle("-fx-font-size: 20px; -fx-font-family: \"Times New Roman\";");
 
         TableColumn<QuranWord, String> colRemarks = new TableColumn<>("Remarks (Preview)");
         colRemarks.setCellValueFactory(param -> new javafx.beans.property.SimpleObjectProperty<>(param.getValue().remarks));
