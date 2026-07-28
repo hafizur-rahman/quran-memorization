@@ -1,17 +1,13 @@
 package com.dreamer;
 
 import com.dreamer.corpus.*;
-import com.dreamer.ui.IrabTableView;
-import com.dreamer.ui.SyntaxAnalysisController;
+import com.dreamer.ui.VerseAnalysisController;
 import com.dreamer.ui.TafsirController;
 import com.dreamer.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.NodeOrientation;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,10 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
 
 import java.io.*;
 import java.net.URL;
@@ -112,7 +105,8 @@ public class Controller implements Initializable {
     @FXML
     TabPane irabPane;
 
-    private SyntaxAnalysisController syntaxAnalysisController;
+    private VerseAnalysisController verseAnalysisController;
+
 
     @FXML
     Button randomVerse;
@@ -148,7 +142,7 @@ public class Controller implements Initializable {
         });
 
         tafsirController = new TafsirController(resourcePath, tafsirPane);
-        syntaxAnalysisController = new SyntaxAnalysisController(bookRef, resourcePath, irabPane);
+        verseAnalysisController = new VerseAnalysisController(bookRef, resourcePath, irabPane);
 
         updatePageRange();
 
@@ -270,9 +264,6 @@ public class Controller implements Initializable {
         playInfo.setVerses(selectedVerses);
 
         updateMediaPlayer(bookRef.get());
-
-//        irabulKalimat.updateFor(chapterId, verseId);
-//        irabulJumla.updateFor(chapterId, verseId);
     }
 
     private List<Verse> preparePlayList(Range pageRange) {
@@ -345,7 +336,7 @@ public class Controller implements Initializable {
         });
 
         tafsirController.updateUI(chapterId, verseId);
-        syntaxAnalysisController.updateUI(chapterId, verseId);
+        verseAnalysisController.updateUI(chapterId, verseId);
 
         quranView.setCurrentPageIndex(currentPageId+1);
 

@@ -62,7 +62,7 @@
 		<sura index="59" ayas="24" start="5126" name="الحشر" tname="Al-Hashr" ename="The Exile" type="Medinan" order="101" rukus="3" />
 		<sura index="60" ayas="13" start="5150" name="الممتحنة" tname="Al-Mumtahana" ename="She that is to be examined" type="Medinan" order="91" rukus="2" />
 		<sura index="61" ayas="14" start="5163" name="الصف" tname="As-Saff" ename="The Ranks" type="Medinan" order="109" rukus="2" />
-		<sura index="62" ayas="11" start="5177" name="الجمعة" tname="Al-Jumu'a" ename="Friday" type="Medinan" order="110" rukus="2" />
+		<sura index="62" ayas="11" start="5177" name="الجمعة" tname="Al-Jumua" ename="Friday" type="Medinan" order="110" rukus="2" />
 		<sura index="63" ayas="11" start="5188" name="المنافقون" tname="Al-Munaafiqoon" ename="The Hypocrites" type="Medinan" order="104" rukus="2" />
 		<sura index="64" ayas="18" start="5199" name="التغابن" tname="At-Taghaabun" ename="Mutual Disillusion" type="Medinan" order="108" rukus="2" />
 		<sura index="65" ayas="12" start="5217" name="الطلاق" tname="At-Talaaq" ename="Divorce" type="Medinan" order="99" rukus="2" />
@@ -70,7 +70,7 @@
 		<sura index="67" ayas="30" start="5241" name="الملك" tname="Al-Mulk" ename="The Sovereignty" type="Meccan" order="77" rukus="2" />
 		<sura index="68" ayas="52" start="5271" name="القلم" tname="Al-Qalam" ename="The Pen" type="Meccan" order="2" rukus="2" />
 		<sura index="69" ayas="52" start="5323" name="الحاقة" tname="Al-Haaqqa" ename="The Reality" type="Meccan" order="78" rukus="2" />
-		<sura index="70" ayas="44" start="5375" name="المعارج" tname="Al-Ma'aarij" ename="The Ascending Stairways" type="Meccan" order="79" rukus="2" />
+		<sura index="70" ayas="44" start="5375" name="المعارج" tname="Al-Maaarij" ename="The Ascending Stairways" type="Meccan" order="79" rukus="2" />
 		<sura index="71" ayas="28" start="5419" name="نوح" tname="Nooh" ename="Noah" type="Meccan" order="71" rukus="2" />
 		<sura index="72" ayas="28" start="5447" name="الجن" tname="Al-Jinn" ename="The Jinn" type="Meccan" order="40" rukus="2" />
 		<sura index="73" ayas="20" start="5475" name="المزمل" tname="Al-Muzzammil" ename="The Enshrouded One" type="Meccan" order="3" rukus="2" />
@@ -87,7 +87,7 @@
 		<sura index="84" ayas="25" start="5884" name="الإنشقاق" tname="Al-Inshiqaaq" ename="The Splitting Open" type="Meccan" order="83" rukus="1" />
 		<sura index="85" ayas="22" start="5909" name="البروج" tname="Al-Burooj" ename="The Constellations" type="Meccan" order="27" rukus="1" />
 		<sura index="86" ayas="17" start="5931" name="الطارق" tname="At-Taariq" ename="The Morning Star" type="Meccan" order="36" rukus="1" />
-		<sura index="87" ayas="19" start="5948" name="الأعلى" tname="Al-A'laa" ename="The Most High" type="Meccan" order="8" rukus="1" />
+		<sura index="87" ayas="19" start="5948" name="الأعلى" tname="Al-Alaa" ename="The Most High" type="Meccan" order="8" rukus="1" />
 		<sura index="88" ayas="26" start="5967" name="الغاشية" tname="Al-Ghaashiya" ename="The Overwhelming" type="Meccan" order="68" rukus="1" />
 		<sura index="89" ayas="30" start="5993" name="الفجر" tname="Al-Fajr" ename="The Dawn" type="Meccan" order="10" rukus="1" />
 		<sura index="90" ayas="20" start="6023" name="البلد" tname="Al-Balad" ename="The City" type="Meccan" order="35" rukus="1" />
