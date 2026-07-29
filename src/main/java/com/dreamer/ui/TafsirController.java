@@ -26,25 +26,32 @@ public class TafsirController {
 //        tafsirViewList.add(new SingleColumnTafsir("Erab",
 //                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_e3rab.db",
 //                true));
-        tafsirViewList.add(new SingleColumnTafsir("Abu Bakar Zakaria",
-                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirzakaria.db",
-                false));
-        tafsirViewList.add(new SingleColumnTafsir("Bayaan",
-                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirbayaan.db",
-                false));
+//        tafsirViewList.add(new SingleColumnTafsir("Abu Bakar Zakaria",
+//                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirzakaria.db",
+//                false));
+//        tafsirViewList.add(new SingleColumnTafsir("Bayaan",
+//                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_tafsirbayaan.db",
+//                false));
+//        tafsirViewList.add(new SingleColumnTafsir("Ibn Kathir",
+//                "jdbc:sqlite:"+ resourcePath + "/dbs/bn_mujibur.db",
+//                false));
+
         tafsirViewList.add(new DoubleColumnTafsir(
                 "Jalalayn",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/ar_jalalayn.db",
                 "jdbc:sqlite:"+ resourcePath + "/dbs/en_jalalayn.db"));
-//        tafsirViewList.add(new SingleColumnTafsir("Muyassar",
-//                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_muyassar.db",
-//                true));
-//        tafsirViewList.add(new SingleColumnTafsir("Qurtubi",
-//                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_qurtubi.db",
-//                true));
-//        tafsirViewList.add(new SingleColumnTafsir("Baghawi",
-//                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_baghawi.db",
-//                true));
+
+        tafsirViewList.add(new SingleColumnTafsir("Muyassar",
+                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_muyassar.db",
+                true));
+        tafsirViewList.add(new SingleColumnTafsir("Qurtubi",
+                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_qurtubi.db",
+                true));
+
+        tafsirViewList.add(new SingleColumnTafsir("Baghawi",
+                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_baghawi.db",
+                true));
+        
 //        tafsirViewList.add(new SingleColumnTafsir("Saddi",
 //                "jdbc:sqlite:"+ resourcePath + "/dbs/ar_saddi.db",
 //                true));
