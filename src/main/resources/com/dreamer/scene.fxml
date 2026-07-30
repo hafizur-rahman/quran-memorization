@@ -113,61 +113,51 @@
             <center>
                 <BorderPane prefWidth="1000.0">
                     <center>
-                        <TabPane side="TOP">
-                            <Tab fx:id="currentVerse" text="Translation" closable="false">
-                                <ScrollPane fitToWidth="true"
-                                            style="-fx-border-color: lightgray; -fx-border-width: 10;">
-                                    <VBox spacing="10">
-                                        <ImageView fx:id="verseImage" fitWidth="930" preserveRatio="true"
-                                                   visible="true">
-                                        </ImageView>
-
-                                        <Separator/>
-
-                                        <BorderPane>
-                                            <center>
-                                                <Text fx:id="verseBengaliTranslation" wrappingWidth="930"
-                                                      fill="slategrey"
-                                                      lineSpacing="6" textAlignment="JUSTIFY">
-                                                    <font>
-                                                        <Font name="Arial" size="20.0"/>
-                                                    </font>
-                                                </Text>
-                                            </center>
-                                        </BorderPane>
-
-                                        <BorderPane>
-                                            <bottom>
-                                                <TabPane fx:id="tafsirPane" side="TOP">
-
-                                                </TabPane>
-                                            </bottom>
-                                        </BorderPane>
-
-                                    </VBox>
-                                </ScrollPane>
-                            </Tab>
-
-                            <Tab fx:id="irabTab" text="Analysis" closable="false">
+                        <BorderPane>
+                            <top>
                                 <BorderPane>
                                     <top>
-                                        <BorderPane>
-                                            <center>
-                                                <ImageView fx:id="verseImage2" fitWidth="650" preserveRatio="true" visible="true">
-                                                </ImageView>
-                                            </center>
-                                        </BorderPane>
+                                        <Separator/>
                                     </top>
                                     <center>
-                                        <TabPane fx:id="irabPane">
-                                        </TabPane>
+                                        <ImageView fx:id="verseImage" fitWidth="650" preserveRatio="true"
+                                                   visible="true">
+                                        </ImageView>
                                     </center>
-                                    <right>
-                                        <Separator/>
-                                    </right>
                                 </BorderPane>
-                            </Tab>
-                        </TabPane>
+                            </top>
+                            <center>
+                                <TabPane fx:id="tafsirPane">
+                                    <Tab closable="false" text="Translation">
+                                        <ScrollPane>
+                                            <BorderPane>
+                                                <left>
+                                                    <Separator/>
+                                                </left>
+                                                <center>
+                                                    <VBox spacing="10">
+                                                        <Separator/>
+
+                                                        <Text fx:id="verseBengaliTranslation" wrappingWidth="950"
+                                                              fill="slategrey"
+                                                              lineSpacing="6" textAlignment="JUSTIFY">
+                                                            <font>
+                                                                <Font name="Arial" size="18.0"/>
+                                                            </font>
+                                                        </Text>
+                                                        <Separator/>
+                                                    </VBox>
+                                                </center>
+                                            </BorderPane>
+                                        </ScrollPane>
+                                    </Tab>
+                                </TabPane>
+                            </center>
+                            <right>
+                                <Separator/>
+                            </right>
+                        </BorderPane>
+
                     </center>
                 </BorderPane>
             </center>

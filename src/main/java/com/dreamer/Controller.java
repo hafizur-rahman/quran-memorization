@@ -50,9 +50,6 @@ public class Controller implements Initializable {
     private ImageView verseImage;
 
     @FXML
-    private ImageView verseImage2;
-
-    @FXML
     private ImageView pageImage;
 
     private BookView quranView;
@@ -102,11 +99,7 @@ public class Controller implements Initializable {
 
     private TafsirController tafsirController;
 
-    @FXML
-    TabPane irabPane;
-
     private VerseAnalysisController verseAnalysisController;
-
 
     @FXML
     Button randomVerse;
@@ -142,7 +135,7 @@ public class Controller implements Initializable {
         });
 
         tafsirController = new TafsirController(resourcePath, tafsirPane);
-        verseAnalysisController = new VerseAnalysisController(bookRef, resourcePath, irabPane);
+        verseAnalysisController = new VerseAnalysisController(bookRef, resourcePath, tafsirPane);
 
         updatePageRange();
 
@@ -321,7 +314,7 @@ public class Controller implements Initializable {
         try {
             javafx.scene.image.Image image = new javafx.scene.image.Image(new FileInputStream(resourcePath + "\\" + imageFileName));
             verseImage.setImage(image);
-            verseImage2.setImage(image);
+            //verseImage2.setImage(image);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
