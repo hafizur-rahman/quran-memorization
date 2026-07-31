@@ -120,7 +120,7 @@
                                         <Separator/>
                                     </top>
                                     <center>
-                                        <ImageView fx:id="verseImage" fitWidth="650" preserveRatio="true"
+                                        <ImageView fx:id="verseImage" fitWidth="850" preserveRatio="true"
                                                    visible="true">
                                         </ImageView>
                                     </center>
