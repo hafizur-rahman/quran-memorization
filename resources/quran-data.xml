@@ -7,13 +7,13 @@
 		<sura index="4" ayas="176" start="493" name="النساء" tname="An-Nisaa" ename="The Women" type="Medinan" order="92" rukus="24" />
 		<sura index="5" ayas="120" start="669" name="المائدة" tname="Al-Maaida" ename="The Table" type="Medinan" order="112" rukus="16" />
 		<sura index="6" ayas="165" start="789" name="الأنعام" tname="Al-Anaam" ename="The Cattle" type="Meccan" order="55" rukus="20" />
-		<sura index="7" ayas="206" start="954" name="الأعراف" tname="Al-A'raaf" ename="The Heights" type="Meccan" order="39" rukus="24" />
+		<sura index="7" ayas="206" start="954" name="الأعراف" tname="Al-Araaf" ename="The Heights" type="Meccan" order="39" rukus="24" />
 		<sura index="8" ayas="75" start="1160" name="الأنفال" tname="Al-Anfaal" ename="The Spoils of War" type="Medinan" order="88" rukus="10" />
 		<sura index="9" ayas="129" start="1235" name="التوبة" tname="At-Tawba" ename="The Repentance" type="Medinan" order="113" rukus="16" />
 		<sura index="10" ayas="109" start="1364" name="يونس" tname="Yunus" ename="Jonas" type="Meccan" order="51" rukus="11" />
 		<sura index="11" ayas="123" start="1473" name="هود" tname="Hud" ename="Hud" type="Meccan" order="52" rukus="10" />
 		<sura index="12" ayas="111" start="1596" name="يوسف" tname="Yusuf" ename="Joseph" type="Meccan" order="53" rukus="12" />
-		<sura index="13" ayas="43" start="1707" name="الرعد" tname="Ar-Ra'd" ename="The Thunder" type="Medinan" order="96" rukus="6" />
+		<sura index="13" ayas="43" start="1707" name="الرعد" tname="Ar-Rad" ename="The Thunder" type="Medinan" order="96" rukus="6" />
 		<sura index="14" ayas="52" start="1750" name="ابراهيم" tname="Ibrahim" ename="Abraham" type="Meccan" order="72" rukus="7" />
 		<sura index="15" ayas="99" start="1802" name="الحجر" tname="Al-Hijr" ename="The Rock" type="Meccan" order="54" rukus="6" />
 		<sura index="16" ayas="128" start="1901" name="النحل" tname="An-Nahl" ename="The Bee" type="Meccan" order="70" rukus="16" />
@@ -26,7 +26,7 @@
 		<sura index="23" ayas="118" start="2673" name="المؤمنون" tname="Al-Muminoon" ename="The Believers" type="Meccan" order="74" rukus="6" />
 		<sura index="24" ayas="64" start="2791" name="النور" tname="An-Noor" ename="The Light" type="Medinan" order="102" rukus="9" />
 		<sura index="25" ayas="77" start="2855" name="الفرقان" tname="Al-Furqaan" ename="The Criterion" type="Meccan" order="42" rukus="6" />
-		<sura index="26" ayas="227" start="2932" name="الشعراء" tname="Ash-Shu'araa" ename="The Poets" type="Meccan" order="47" rukus="11" />
+		<sura index="26" ayas="227" start="2932" name="الشعراء" tname="Ash-Shuaraa" ename="The Poets" type="Meccan" order="47" rukus="11" />
 		<sura index="27" ayas="93" start="3159" name="النمل" tname="An-Naml" ename="The Ant" type="Meccan" order="48" rukus="7" />
 		<sura index="28" ayas="88" start="3252" name="القصص" tname="Al-Qasas" ename="The Stories" type="Meccan" order="49" rukus="8" />
 		<sura index="29" ayas="69" start="3340" name="العنكبوت" tname="Al-Ankaboot" ename="The Spider" type="Meccan" order="85" rukus="7" />
@@ -1436,7 +1436,7 @@
 		<page index="468" sura="40" aya="8" />
 		<page index="469" sura="40" aya="17" />
 		<page index="470" sura="40" aya="26" />
-		<page index="471" sura="40" aya="34" />
+		<page index="471" sura="40" aya="33" />
 		<page index="472" sura="40" aya="41" />
 		<page index="473" sura="40" aya="50" />
 		<page index="474" sura="40" aya="59" />
